@@ -16,9 +16,9 @@
     padding-right: 5px;
 }
 .rules-relation-layer .more-content{
-    position: absolute;
-    right: -35px;
-    top: -12px;
+    float: right;
+    margin-right: 15px;
+    margin-top: 10px;
 }
 .rules-relation-layer .more-content~.layui-input{
     margin-bottom: 5px;
@@ -32,14 +32,9 @@
 
 .relation-rules .layui-input{
     margin-left: 0;
+    margin-bottom: 5px;
 }
-.formula-realtion{
-    position: relative;
-}
-.formula-realtion .more-content{
-    position: absolute;
-    right: 35px;
-}
+
 .formula-realtion .layui-input-block{
     margin-bottom: 5px;
 }

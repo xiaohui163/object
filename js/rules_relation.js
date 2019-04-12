@@ -118,6 +118,23 @@ layui.use(['form', 'layer', 'upload'], function () {
     var uploadInst = "";
     //点击增加一行
     $('.add-item').click(function (e) {
+        if($('.formula-realtion .layui-input-block').length == 0){
+            let freomDom = `<div class="layui-input-block">`+
+                `<div class="layui-form-mid">form</div>`+
+                `<div class="layui-input-inline fromA">`+
+                `<input type="text" name="formula-from${fromCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input from" value="" required>`+
+                `</div>`+
+                `<div class="layui-form-mid" style="margin-left: 4px;">to</div>`+
+                `<div class="layui-input-inline toB">`+
+                `<input type="text" name="formula-to${toCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input to" value="">`+
+                `</div>`+
+                `</div>`
+            $('.formula-realtion').append(freomDom)
+        }
+        if($('.relation-rules .layui-input-block input').length == 0){
+            let ruleDom = `<input type="text" name="rules${rulesCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input rule" value="">`
+            $('.relation-rules .layui-input-block').append(ruleDom)
+        }
         $layer.open({
             type: 1,
             content: $('.rules-relation-layer'),
@@ -139,11 +156,12 @@ layui.use(['form', 'layer', 'upload'], function () {
             }
         })
     })
-    $('body').on('click', '.add-rules .cancel-layer', function (e) {
+    $('body').on('click', '.rules-relation-layer .cancel-layer', function (e) {
         e.stopPropagation();
-        $('.rules-lib-layer form')[0].reset()
+        $('.rules-relation-layer form')[0].reset()
         $('.rules-relation-layer .formula-realtion .layui-input-block').remove()
         $('.relation-rules .layui-input-block input').remove()
+        $layer.closeAll('page');
     })
 
     //添加关系
@@ -151,22 +169,22 @@ layui.use(['form', 'layer', 'upload'], function () {
     $('body').on('click','.rules-relation-layer .more-content',function(e){
         e.stopPropagation();
         let dom;
-        if($(this).parents('.layui-form-item').hasClass('.formula-realtion')) {
-            dom =  formDom += `<div class="layui-input-block">`+
+        if($(this).parents('.layui-form-item').hasClass('formula-realtion')) {
+            dom = `<div class="layui-input-block">`+
                 `<div class="layui-form-mid">form</div>`+
                 `<div class="layui-input-inline fromA">`+
-                `<input type="text" name="formula-from${fromCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input from" value="">`+
+                `<input type="text" name="formula-from${fromCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input from" value="" required>`+
                 `</div>`+
                 `<div class="layui-form-mid" style="margin-left: 4px;">to</div>`+
                 `<div class="layui-input-inline toB">`+
                 `<input type="text" name="formula-to${toCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input to" value="">`+
                 `</div>`+
                 `</div>`
+            $(this).parents('.layui-form-item').append(dom)
         } else {
-
-            dom = `<input type="text" name="formula-to${toCount++}"  placeholder="请选择" autocomplete="off" class="layui-input to">`
+            dom = `<input type="text" name="rules${rulesCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input rule" value="">`
+            $(this).siblings('.layui-input-block').append(dom)
         }
-        $(this).parents('.layui-input-block').append(dom)
     })
 
 
@@ -208,6 +226,19 @@ layui.use(['form', 'layer', 'upload'], function () {
 
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
+
+    $('body').on('click','.add-relation .layui-input,.edit-relation .layui-input',function (e) {
+        e.stopPropagation();
+        let it = this
+        if($(it).hasClass('from')){
+
+        }else if($(it).hasClass('to')){
+
+        }else if($(it).hasClass('rule')){
+
+        }
+    })
+
 })
 function renderRulesRelation(res) {
     let formDom = "", rulesDom = ""
@@ -215,7 +246,7 @@ function renderRulesRelation(res) {
         formDom += `<div class="layui-input-block">`+
             `<div class="layui-form-mid">form</div>`+
             `<div class="layui-input-inline fromA">`+
-            `<input type="text" name="formula-from${fromCount++}" readonly data-id="${res.data.from[i].id}" placeholder="请选择" autocomplete="off" class="layui-input from" value="${res.data.from[i].name}">`+
+            `<input type="text" name="formula-from${fromCount++}" readonly data-id="${res.data.from[i].id}" placeholder="请选择" autocomplete="off" class="layui-input from" value="${res.data.from[i].name}" required>`+
             `</div>`+
             `<div class="layui-form-mid" style="margin-left: 4px;">to</div>`+
             `<div class="layui-input-inline toB">`+

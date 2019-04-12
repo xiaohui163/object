@@ -1,7 +1,7 @@
 /*右侧折叠面板*/
 .collapse-content {
     width: calc(100% - 102px);
-    height: calc(100% - 456px);
+    height: calc(100% - 178px);
     border: none;
     padding-bottom: 80px;
     overflow-y: auto;

@@ -23,7 +23,7 @@
         </ul>
         <div class="layui-layout layui-layout-admin">
             <div class="layui-header">
-                <h2 class="layui-logo top-title"><strong>BIAD-</strong>要素管理</h2>
+                <h2 class="layui-logo top-title"><strong>BIAD-</strong>规则关系库</h2>
             </div>
             <div class="layui-side left-nav">
                 <ul class="layui-nav layui-nav-tree" lay-filter="nav_ul">
@@ -153,7 +153,43 @@
         <!--自定义js-E-->
     </body>
     <!--自定义弹框-s-->
+    <div class="add-select" style="display: none">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <select name="ele" class="class-select" lay-filter="calssIndicators"></select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="selected-render-box"></div>
+            </div>
+        </form>
 
+    </div>
+
+    <div class="addColModel">
+        <form action="" class="layui-form add-col-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">表头名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入表头名称" class="layui-input"
+                           autocomplete="off">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">内容</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="item1" lay-verify="" placeholder="请输入内容" class="layui-input"
+                           autocomplete="off">
+                </div>
+                <span class="layui-icon more-content"></span>
+            </div>
+            <div class="layui-form-item btns">
+                <span class="layui-btn submit-layer" lay-submit lay-filter="submitCol">提交</span>
+                <span type="reset" class="layui-btn reset-form cancel-layer">重置</span>
+            </div>
+        </form>
+    </div>
     <div class="rules-relation-layer">
         <form class="layui-form" action="" lay-filter="relation-lib">
             <div class="layui-form-item">
@@ -163,13 +199,13 @@
                     <input type="text" name="name" required  lay-verify="required|twoWord" placeholder="请输入规则名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
-            <div class="layui-form-item formula-realtion">
+            <div class="layui-form-item formula-realtion" lay-verify="noEmpty">
                 <label class="layui-form-label">关联的要素指标</label>
                 <i class="layui-btn more-content"></i>
-                <div class="layui-input-block">
+                <div class="layui-input-block" >
                     <div class="layui-form-mid">form</div>
                     <div class="layui-input-inline fromA">
-                        <input type="text" name="formula-from0" readonly placeholder="请选择" autocomplete="off" class="layui-input from">
+                        <input type="text" name="formula-from0" readonly placeholder="请选择" autocomplete="off" class="layui-input from" required>
                     </div>
                     <div class="layui-form-mid" style="margin-left: 4px;">to</div>
                     <div class="layui-input-inline toB">
@@ -180,8 +216,9 @@
 
             <div class="layui-form-item relation-rules">
                 <label class="layui-form-label">规则</label>
+                <i class="layui-btn more-content"></i>
                 <div class="layui-input-block">
-                    <i class="layui-btn more-content"></i>
+                    <input type="text" name="rules${rulesCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input rule" value="">
                 </div>
             </div>
             <div class="layui-form-item btns">
@@ -190,5 +227,10 @@
             </div>
         </form>
     </div>
+    <script id="chooseFromTpl" type="text/html">
+        <div class="chooseFrom">
+            #
+        </div>
+    </script>
     <!--自定义弹框-e-->
 </html>
