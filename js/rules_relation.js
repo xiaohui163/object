@@ -230,10 +230,50 @@ layui.use(['form', 'layer', 'upload'], function () {
     $('body').on('click','.add-relation .layui-input,.edit-relation .layui-input',function (e) {
         e.stopPropagation();
         let it = this
-        if($(it).hasClass('from')){
-
-        }else if($(it).hasClass('to')){
-
+        if($(it).hasClass('from')||$(it).hasClass('to')){
+            $layer.open({
+                type: 1,
+                content: $('#chooseFromTpl').html(),
+                title: '选择要素指标',
+                skin: 'choose-formula',
+                shadeClose: false,
+                resize: false,
+                move: false,
+                area: ['870px', '475px'],
+                tipsMore: true,
+                success: function (layero, index) {
+                    let asyncSetting = {
+                        async: {
+                            key:{
+                                title: "name"
+                            },
+                            autoParam:["id","name"],
+                            dataFilter: filter,
+                            enable: true,
+                            url: "../data/eleLibTree.json",
+                            type: "post",
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true,
+                                idKey: "id",
+                                pIdKey: "pId",
+                                rootPId: 0
+                            }
+                        },
+                        view:{
+                            showLine: false,
+                            showTitle: showTitle,
+                            fontCss: setFontCss,
+                            selectedMulti: false
+                        },
+                        callback:{
+                            onClick: ztreeChooseELe
+                        }
+                    };
+                    zTreeObj = $.fn.zTree.init($('#chooseFromTree'), asyncSetting);
+                },
+            })
         }else if($(it).hasClass('rule')){
 
         }
@@ -264,4 +304,25 @@ function renderRulesRelation(res) {
     $('.rules-relation-layer .formula-realtion').append(formDom)
     $('.relation-rules .layui-input-block input').remove()
     $('.relation-rules .layui-input-block').append(rulesDom);
+}
+
+function ztreeChooseELe(event, treeId, treeNode) {
+    $.ajax({
+        url:'../data/eleLibColla.json',
+        data:{
+            id: treeNode.id
+        },
+        type:'post',
+        dataType: 'json'
+    }).done(function(res){
+        if(res.status){
+            var getTpl = $('#collaItems').html();
+            layui.use('laytpl', function () {
+                var $tpl = layui.laytpl;
+                $tpl(getTpl).render(res, function (html) {
+                    $('.chooseFrom .choose-table').html(html).attr('data-id',treeNode.id)
+                })
+            })
+        }
+    })
 }

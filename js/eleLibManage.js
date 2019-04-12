@@ -136,8 +136,9 @@ layui.use(['element','form','table','laytpl','layer'], function () {
         }).done(function (res) {
             if(res.tableId){
                 let dom = "", first, second;
+                let maxWidth = Math.floor($(it).parents('.colla-item').width() / res.data.length) + 'px'
                 for (let i = 0; i < res.data.length; i++) {
-                    dom += "<ul class='content-box'>";
+                    dom += "<ul class='content-box' style='max-width:"+ maxWidth +"'>";
                     first = "", second = "";
                     first += `<li class="content-header" data-id="${res.data[i].id}"><span class="content-cell">${res.data[i].title}</span><span class="layui-icon more-content" title="添加项目"></span></li>`
                     if(res.data[i].children.length > 0){

@@ -108,7 +108,7 @@
     margin: 0;
     width: 100%;
     height: 230px;
-    overflow-y: auto;
+    overflow: auto;
     border-radius: 0 0 5px 5px;
     font: 500 16px SoureceHanSansCN-Regular;
     color: #999999;
@@ -135,9 +135,9 @@
     float: left;
 }
 
-/*.content-box:last-child{
-    border-right: none;
-}*/
+span.content-text{
+    font-size: 14px;
+}
 .content-header {
     width: 100%;
     height: 60px;
@@ -279,14 +279,17 @@
     margin-left: 10px;
     overflow: auto;
 }
-.add-select .item-top{
+.add-select .item-top,
+.chooseFrom .item-top{
     height: 40px;
 }
-.add-select .colla-title{
+.add-select .colla-title,
+.chooseFrom .colla-title{
     line-height: 40px;
     font-size: 16px;
 }
 .add-select .item-top > .layui-btn,
+.chooseFrom .item-top > .layui-btn,
 .add-select .item-top:hover > .layui-btn {
     display: none;
 }
@@ -294,16 +297,25 @@
 .add-select .colla-content{
     height: 167px;
 }
-.add-select .colla-icon{
+.add-select .colla-icon,
+.chooseFrom .colla-icon{
     margin-top: 13px;
 }
-.add-select .content-cell{
+.add-select .content-cell,
+.chooseFrom .content-cel{
     font-size: 12px;
 }
-.add-select .content-header{
+.add-select .content-header,
+.chooseFrom .content-header{
     height: 45px;
     line-height: 45px;
 }
-.add-select .content-header .content-cell{
+.add-select .content-header .content-cell,
+.chooseFrom .content-header .content-cell{
     font-size: 14px;
+    line-height: 20px;
+}
+.add-select span.content-text,
+.chooseFrom span.content-text{
+    font-size: 12px;
 }

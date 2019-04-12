@@ -142,6 +142,40 @@
             </form>
         </div>
         <!--自定义内容-e-->
+        <!--自定义模板-s-->
+        <script id="collaItems" type="text/html">
+            {{# layui.each(d.data,function(idx,item){ }}
+            <div class="colla-item {{ item.isNewCreated ? 'editable' : '' }}" data-id={{item.id}} data-pid="{{item.pId}}"
+                 data-lev="{{item.lev}}">
+                <div class="item-top">
+                    <h3 class="colla-title">
+                        <i class="colla-icon arrow-right"></i>
+                        <span class="title-text">{{ item.name }}</span>
+                        <input type="text" class="input-name" value="{{item.name}}">
+                    </h3>
+                    <span class="layui-btn colla-del" title="删除当前项"></span>
+                    <span class="layui-btn clloa-add-col" title="添加列"></span>
+                    <span class="layui-btn colla-edit {{ item.isNewCreated ? 'new-created' : '' }}" title="编辑当前列"></span>
+                </div>
+                <div class="colla-content" data-id="{{ item.id }}"></div>
+            </div>
+            {{# }) }}
+        </script>
+        <script id="calssTpl" type="text/html">
+            <option value="">指标分类</option>
+            {{# layui.each(d.data,function(index,ele){ }}
+            {{# if(ele.isParent){ }}
+            <optgroup label="{{ ele.name }}">
+                {{# layui.each(ele.children,function(i,e){ }}
+                <option value="{{ e.id }}">{{ e.name }}</option>
+                {{# }) }}
+            </optgroup>
+            {{# }else{ }}
+            <option value="{{ ele.id }}">{{ ele.name }}</option>
+            {{# } }}
+            {{# }) }}
+        </script>
+        <!--自定义模板-e-->
         <script src="../plugin/jquery-3.3.1.js"></script>
         <script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
         <script src="../plugin/zTree_v3/js/jquery.ztree.all.js"></script>
@@ -229,7 +263,8 @@
     </div>
     <script id="chooseFromTpl" type="text/html">
         <div class="chooseFrom">
-            #
+            <div id="chooseFromTree" class="ztree"></div>
+            <div class="choose-table"></div>
         </div>
     </script>
     <!--自定义弹框-e-->
