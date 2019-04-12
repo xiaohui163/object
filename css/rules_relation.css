@@ -21,8 +21,6 @@
     top: -12px;
 }
 .rules-relation-layer .more-content~.layui-input{
-    width: calc(100% - 45px);
-    margin-left: 45px;
     margin-bottom: 5px;
 }
 .show-only .rules-relation-layer .more-content{
@@ -32,3 +30,20 @@
     display: none;
 }
 
+.relation-rules .layui-input{
+    margin-left: 0;
+}
+.formula-realtion{
+    position: relative;
+}
+.formula-realtion .more-content{
+    position: absolute;
+    right: 35px;
+}
+.formula-realtion .layui-input-block{
+    margin-bottom: 5px;
+}
+.layui-input-inline.fromA,.layui-input-inline.toB{
+    width: 128px;
+    margin-right: 0;
+}

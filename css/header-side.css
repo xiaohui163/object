@@ -326,13 +326,13 @@ html, body {
 }
 
 .layui-btn.submit-layer {
-    background: url("../img/btn_nor02.png") center no-repeat;
+    background: url("../img/btn_nor02.png") center 5px no-repeat;
     color: white;
     margin-left: 10px;
 }
 
 .layui-btn.cancel-layer {
-    background: url("../img/btn_nor.png") center no-repeat;
+    background: url("../img/btn_nor.png") center 5px no-repeat;
     color: #717171;
     margin-left: 0;
 }

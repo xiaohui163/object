@@ -84,4 +84,20 @@ table.dataTable.no-footer,.dataTables_wrapper.no-footer .dataTables_scrollBody,t
     min-height: 75px;
 }
 
+.layui-btn.btn-edit{
+    background:linear-gradient(to right, #40a2fc, #7de2e9);
+}
 
+.layui-btn.btn-del{
+    background-color: #fff;
+    color: #9e9e9e;
+    border: 1px solid #9e9e9e;
+}
+.layui-btn.btn-edit,
+.layui-btn.btn-del{
+    height: 30px;
+    line-height: 30px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
