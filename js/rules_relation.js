@@ -49,8 +49,8 @@ function callbacka(ele, tablee) {
                     $form.val("relation-lib", {
                         "id": $(ele).attr('data-id')
                         , "name": $(ele).text()
-                        , "formula-from": $(ele).parents('td').nextAll().find('.indicators-from').text()
-                        , "formula-to": $(ele).parents('td').nextAll().find('.indicators-to').text()
+                        , "formula-from0": $(ele).parents('td').nextAll().find('.indicators-from').text()
+                        , "formula-to0": $(ele).parents('td').nextAll().find('.indicators-to').text()
                     })
                     $('.layui-input', layero).attr('readonly', true);
                 },
@@ -60,13 +60,20 @@ function callbacka(ele, tablee) {
                 }
             })
         } else if ($(ele).hasClass('btn-edit')) {//点击编辑按钮
-            $.ajaxComplete({
+            $.ajax({
                 url:'../data/edit_relation.json',
                 data:'id'+$(ele).attr('data-id'),
                 type:'post',
                 dataType:'json',
                 success:function(res){
                     if(res.status){
+                        let formDom = "", fromCount = 0, toCount = 0
+                        for (let i = 0; i < res.data.from.length; i++) {
+                            formDom += `<input type="text" name="formula-from${formCount++}" data-id="${res.data.from[i].id}" placeholder="请选择" autocomplete="off" class="layui-input from" value="${res.data.from[i].name}">`
+                        }
+                        for (let j = 0; j < res.data.to.length; j++) {
+                            `<input type="text" name="formula-to${toCount++}" data-id="${res.data.to[i].id}" placeholder="请选择" autocomplete="off" class="layui-input to" value="${res.data.to[i].name}">`
+                        }
                         $layer.open({
                             type: 1,
                             content: $('.rules-relation-layer'),
@@ -81,15 +88,13 @@ function callbacka(ele, tablee) {
                                 $form.val("relation-lib", {
                                     "id": $(ele).attr('data-id')
                                     , "name": $(ele).parents('td').prevAll().find('.rules-name').text()
-                                    , "formula-from": $(ele).parents('td').prevAll().find('.indicators-from').text()
-                                    , "formula-to": $(ele).parents('td').prevAll().find('.indicators-to').text()
                                 })
                                 $('.layui-input', layero).attr('readonly', false);
                             },
                             cancel: function (index, layero) {
                                 $('.rules-relation-layer form')[0].reset()
-                                $('.fromA .from',layero).not('[name="formula-from"]').remove()
-                                $('.toB .to',layero).not('[name="formula-to"]').remove()
+                                $('.fromA .from',layero).not('[name="formula-from0"]').remove()
+                                $('.toB .to',layero).not('[name="formula-to0"]').remove()
                             }
                         })
                     }
@@ -128,8 +133,8 @@ layui.use(['form', 'layer', 'upload'], function () {
     $('body').on('click', '.add-rules .cancel-layer', function (e) {
         e.stopPropagation();
         $('.rules-lib-layer form')[0].reset()
-        $('fromA .from').not('[name="formula-from"]').remove()
-        $('toB .to').not('[name="formula-to"]').remove()
+        $('fromA .from').not('[name="formula-from0"]').remove()
+        $('toB .to').not('[name="formula-to0"]').remove()
     })
 
     //添加关系
