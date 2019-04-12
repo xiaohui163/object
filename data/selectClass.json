@@ -1,0 +1,37 @@
+{
+  "status": true,
+  "data": [
+    {
+      "name": "规划类指标",
+      "isParent": true,
+      "children": [
+        {
+          "id": "ztghzb",
+          "name": "总体规划指标",
+          "isParent": false
+        },
+        {
+          "id": "kzxxxghzb",
+          "name": "控制性详细规划指标",
+          "isParent": false
+        }
+      ]
+    },
+    {
+      "name": "建筑类指标",
+      "isParent": true,
+      "children": [
+        {
+          "id": "fasjjdzb",
+          "name": "方案设计阶段指标",
+          "isParent": false
+        },
+        {
+          "id": "sgtjdzb",
+          "name": "施工图阶段指标",
+          "isParent": false
+        }
+      ]
+    }
+  ]
+}

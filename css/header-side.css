@@ -1,0 +1,411 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+/*回到顶部*/
+.layui-fixbar {
+    width: 44px;
+    bottom: 18px;
+    right: 30px;
+}
+
+.layui-fixbar .layui-fixbar-top {
+    width: 44px;
+    height: 44px;
+    background: url("../img/zhiding_btn.png") center no-repeat #57b7e5;
+}
+
+.layui-fixbar .more {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
+    color: white;
+    background-color: #48aae5;
+}
+
+/*头部*/
+.layui-layout-admin .layui-header {
+    width: 100%;
+    height: 56px;
+    background-color: #effafc;
+}
+
+.layui-layout-admin .top-title {
+    color: #545456;
+    font: 24px/20px Arial-Black, SoureceHanSansCN-Regular;
+    margin: 19px 0 19px 24px;
+}
+
+/*左侧导航*/
+.layui-layout-admin .left-nav {
+    width: 110px;
+    border-top: 3px solid #f1f1f1;
+    top: 56px;
+    height: calc(100% - 56px);
+}
+
+.left-nav .layui-nav-tree {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+}
+
+.left-nav .layui-nav-item {
+    height: 90px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.left-nav .layui-nav-item.layui-this {
+    background-color: #fff;
+}
+
+
+.left-nav .layui-nav-item.layui-this a,
+.left-nav .layui-nav-item a:hover {
+    background-color: #fff;
+}
+
+.layui-nav-tree .layui-nav-bar {
+    background: -webkit-linear-gradient(#2f86ff, #1af2cc);
+}
+
+.layui-nav-tree .layui-nav-item a {
+    height: 100%;
+}
+
+.nav-icon {
+    width: 30px;
+    height: 28px;
+    margin: 20px auto 12px auto;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.nav-text {
+    font: 700 14px SoureceHanSansCN-Regular;
+    color: #66717d;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.dictionary .nav-icon {
+    background-image: url('../img/zidian_btn.png');
+}
+
+.element .nav-icon {
+    background-image: url('../img/yaosuku_btn.png');
+}
+
+.indicators .nav-icon {
+    background-image: url('../img/zhibiaoku_btn.png');
+}
+
+.rules .nav-icon {
+    background-image: url('../img/guizeku_btn.png');
+}
+
+.function .nav-icon {
+    background-image: url('../img/hanshuku_btn.png');
+}
+
+.rules-visual .nav-icon {
+    background-image: url('../img/1icon-zidiangguanli.png');
+}
+
+.nav-left-border {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 90px;
+    background: -webkit-linear-gradient(#2f86ff, #1af2cc);
+    display: none;
+}
+
+.layui-nav-item.layui-this>.nav-left-border {
+    display: block;
+}
+
+/*中间部分*/
+.tree {
+    width: 252px;
+    height: calc(100% - 56px);
+    position: fixed;
+    left: 110px;
+    border-top: 3px solid #f1f1f1;
+    background: linear-gradient(to right, #f6f6f6, #ffffff);
+    padding: 0 7px;
+}
+
+.tree-title {
+    padding: 24px 0 15px 8px;
+    font: 700 22px SoureceHanSansCN-Blod;
+    color: #545456;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.title-text {
+    float: left;
+    margin-right: 10px;
+}
+
+.tree .layui-badge-dot {
+    top: -3px;
+    background-color: #fb2d5c;
+}
+
+.tree-content {
+    width: calc(100% - 7px);
+    height: calc(100% - 102px);
+    padding: 16px 15px 15px 0;
+    overflow: auto;
+}
+
+.ztree li a {
+    margin-bottom: 8px;
+}
+
+.ztree li a span {
+    font: 500 14px SourceHanSansCn-Medium;
+}
+
+.ztree > li > a span {
+    font: 700 16px SourceHanSansCn-Medium;
+}
+
+.ztree li span.button.ico_docu {
+    background-position: 3px -111px;
+    width: 15px;
+    vertical-align: top;
+}
+
+.ztree li a.curSelectedNode {
+    background-color: transparent;
+    font-family: SourceHanSansCN-Blod;
+    color: rgba(53, 53, 57, 0.7);
+}
+
+.ztree li a:hover {
+    text-decoration: none;
+}
+
+.ztree .selected {
+    color: #6cb5ff;
+}
+
+/*右侧部分*/
+.right-content {
+    position: relative;
+    top: 0;
+    left: 376px;
+    width: calc(100% - 404px);
+    height: calc(100% - 56px);
+    background: url('../img/bg2.png') left -10px no-repeat fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    padding: 0 0 0 28px;
+    overflow-y: hidden;
+}
+
+/*右侧上部工具*/
+.content-tools {
+    margin-bottom: 36px;
+    margin-top: 30px;
+}
+
+.select-search {
+    width: 322px;
+    height: 32px;
+    background-color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    float: left;
+}
+
+.selector {
+    width: 91px;
+    height: 32px;
+    border: none;
+    font: 700 14px/32px SoureceHanSansCN-Medium;
+    color: rgba(53, 53, 57, .7);
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background: url('../img/select_03.png') no-repeat scroll 66px center transparent;
+    padding-left: 8px;
+    padding-right: 25px;
+    text-align: center;
+    -ms-text-align-last: center;
+    text-align-last: center;
+    float: left;
+}
+
+.search {
+    height: 20px;
+    width: 192px;
+    line-height: 20px;
+    float: left;
+    border: none;
+    border-left: 2px solid #d5d5db;
+    display: block;
+    margin: 6px 0 6px 0;
+    text-indent: 20px;
+    padding-right: 5px;
+}
+
+.layui-icon-search {
+    font-weight: 700;
+    line-height: 32px;
+    color: #d5d5db;
+    cursor: pointer;
+}
+
+.add-item {
+    float: left;
+    width: 30px;
+    height: 30px;
+    background: url("../img/add_btn_.png") center no-repeat;
+    margin-left: 31px;
+}
+
+.attachment {
+    float: left;
+    margin-left: 34px;
+}
+
+/*选择插入类型弹框*/
+.top-tips {
+    position: fixed;
+    top: 66px;
+    right: 59px;
+    width: 157px;
+    height: 100px;
+    background-color: #fff;
+    z-index: 999;
+    border-radius: 5px;
+    display: none;
+}
+
+.top-tips.active {
+    display: block;
+}
+
+.top-tips .layui-form-item:first-child {
+    padding-left: 14px;
+    padding-top: 5px;
+    margin-bottom: 5px;
+}
+
+.top-tips .layui-form-radio {
+    margin-top: 0;
+}
+
+.top-tips .layui-form-radio * {
+    font: 15px SoureceHanSansCN-Medium;
+    color: #717171;
+}
+
+.top-tips .layui-form-radio .layui-icon {
+    background: -webkit-linear-gradient(#5689d0, #2052a7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-tips .layui-btn {
+    width: 71px;
+    height: 32px;
+    font: 14px SoureceHanSansCN-Medium;
+    padding-bottom: 5px;
+    float: left;
+}
+
+.layui-btn.submit-layer {
+    background: url("../img/btn_nor02.png") center no-repeat;
+    color: white;
+    margin-left: 10px;
+}
+
+.layui-btn.cancel-layer {
+    background: url("../img/btn_nor.png") center no-repeat;
+    color: #717171;
+    margin-left: 0;
+}
+
+.layui-layout-admin .left-nav {
+    overflow-x: visible;
+}
+
+
+.more-right {
+    width: 20px;
+    height: 20px;
+    background: url('../img/icon_nor.png') center no-repeat;
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 5px;
+    bottom: 10px;
+    cursor: pointer;
+}
+
+.active.more-right {
+    background-image: url("../img/icon_sele.png");
+}
+
+.sec-nav {
+    display: none;
+    position: absolute;
+    width: 110px;
+    top: 0;
+    left: 110px;
+    box-shadow: 3px 5px 8px 0px #deedf3;
+}
+
+.active ~ .sec-nav {
+    display: block;
+}
+.sec-nav dd{
+    width: 110px;
+    height: 90px;
+    background: linear-gradient(to right, #e7e7e787, #fff);
+    border-bottom: 1px solid #e3e3e3;
+    position: relative;
+}
+.left-nav .layui-nav-item .sec-nav a{
+    background: linear-gradient(to right, #e7e7e787, #fff);
+}
+/*.indicators {
+    box-shadow: 3px 1px 8px 0 #deedf3;
+}*/
+
+
+
+.rules-class > div {
+    width: 105px;
+    height: 26px;
+    background: url('../img/3.png') center -1px no-repeat;
+    text-align: center;
+    font: 500 14px/26px SoureceHanSansCN-Medium;
+    margin-right: 12px;
+    color: #545456;
+    float: left;
+    cursor: pointer;
+}
+
+.rules-class .active {
+    font-weight: 700;
+    font-family: SoureceHanSansCN-Blod;
+    color: #69acff;
+}
+
+
+.sec-nav .layui-this .nav-left-border,
+.sec-nav dd:hover .nav-left-border {
+    display: block;
+}
+

@@ -1,0 +1,42 @@
+{
+  "status": true,
+  "data": [
+    {
+      "id": 1111,
+      "pId": 111,
+      "name": "住宅建筑",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1112,
+      "pId": 111,
+      "name": "住宅道路",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1113,
+      "pId": 111,
+      "name": "住宅停车场",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1114,
+      "pId": 111,
+      "name": "住宅小游园",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1115,
+      "pId": 111,
+      "name": "宿舍",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1116,
+      "pId": 111,
+      "name": "乡村住宅",
+      "isParent": false,
+      "lev": 4
+    }
+  ]
+}

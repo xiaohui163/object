@@ -1,0 +1,16 @@
+{
+  "pageData": [
+    {
+      "name": "第一个关系",
+      "indicators": {"from":"指标1","to":"指标2"}
+    },
+    {
+      "name": "第二个关系",
+      "indicators": {"from":"指标1","to":"指标2"}
+    },
+    {
+      "name": "第三个关系",
+      "indicators": {"from":"指标1","to":"指标2"}
+    }
+  ]
+}

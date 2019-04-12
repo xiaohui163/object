@@ -1,0 +1,52 @@
+{
+  "tableId": 111,
+  "name": "住宅用地",
+  "data": [
+    {
+      "id": "zzjz",
+      "title": "住宅建筑",
+      "align":"center",
+      "minWidth": 100,
+      "children": [
+        {
+          "id": 1555,
+          "title": 5555
+        },{
+          "id": 1556,
+          "title": 5556
+        }
+      ]
+    },{
+      "id": "zjdl",
+      "title": "住宅道路",
+      "align":"center",
+      "minWidth": 100,
+      "children": []
+    },{
+      "id": "zjtcc",
+      "title": "住宅停车场",
+      "align":"center",
+      "minWidth": 100,
+      "children": []
+    },{
+      "id": "zzxyy",
+      "title": "住宅小游园",
+      "align":"center",
+      "minWidth": 100,
+      "children": []
+    },{
+      "id": "ss",
+      "title": "宿舍",
+      "align":"center",
+      "minWidth": 100,
+      "children": []
+    },{
+      "id": "xczz",
+      "title": "乡村住宅",
+      "align":"center",
+      "minWidth": 100,
+      "children": []
+    }
+  ]
+
+}

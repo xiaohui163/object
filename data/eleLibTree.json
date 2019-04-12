@@ -1,0 +1,66 @@
+{
+  "status": true,
+  "data": [
+    {
+      "id": 1,
+      "pId": 0,
+      "name": "规划类要素",
+      "isParent": true,
+      "lev": 1
+    },{
+      "id": 11,
+      "pId": 1,
+      "name": "居住用地",
+      "isParent": true,
+      "lev": 2
+    },{
+      "id": 111,
+      "pId": 11,
+      "name": "住宅用地",
+      "isParent": true,
+      "lev": 3
+    },{
+      "id": 1111,
+      "pId": 111,
+      "name": "住宅建筑",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1112,
+      "pId": 111,
+      "name": "住宅道路",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": "001113",
+      "pId": 111,
+      "name": "住宅停车场",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1114,
+      "pId": 111,
+      "name": "住宅小游园",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1115,
+      "pId": 111,
+      "name": "宿舍",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 1116,
+      "pId": 111,
+      "name": "乡村住宅",
+      "isParent": false,
+      "lev": 4
+    },{
+      "id": 112,
+      "pId": 11,
+      "name": "服务设施用地",
+      "isParent": true,
+      "lev": 3
+    }
+  ]
+}

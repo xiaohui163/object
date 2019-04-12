@@ -1,0 +1,96 @@
+{
+  "itemId": 111,
+  "pId": 11,
+  "name": "住宅用地",
+  "cols": {
+    "data": [
+      {
+        "id": 1111,
+        "pId": 111,
+        "name": "住宅建筑",
+        "isParent": false,
+        "lev": 4
+      },{
+        "id": 1112,
+        "pId": 111,
+        "name": "住宅道路",
+        "isParent": false,
+        "lev": 4
+      },{
+        "id": 1113,
+        "pId": 111,
+        "name": "住宅停车场",
+        "isParent": false,
+        "lev": 4
+      },{
+        "id": 1114,
+        "pId": 111,
+        "name": "住宅小游园",
+        "isParent": false,
+        "lev": 4
+      },{
+        "id": 1115,
+        "pId": 111,
+        "name": "宿舍",
+        "isParent": false,
+        "lev": 4
+      },{
+        "id": 1116,
+        "pId": 111,
+        "name": "乡村住宅",
+        "isParent": false,
+        "lev": 4
+      }
+    ]
+  },
+  "items":{
+    "data": [
+      {
+        "id": "zzjz",
+        "title": "住宅建筑",
+        "align":"center",
+        "minWidth": 100,
+        "children": [
+          {
+            "id": 1555,
+            "title": 5555
+          },{
+            "id": 1556,
+            "title": 5556
+          }
+        ]
+      },{
+        "id": "zjdl",
+        "title": "住宅道路",
+        "align":"center",
+        "minWidth": 100,
+        "children": []
+      },{
+        "id": "zjtcc",
+        "title": "住宅停车场",
+        "align":"center",
+        "minWidth": 100,
+        "children": []
+      },{
+        "id": "zzxyy",
+        "title": "住宅小游园",
+        "align":"center",
+        "minWidth": 100,
+        "children": []
+      },{
+        "id": "ss",
+        "title": "宿舍",
+        "align":"center",
+        "minWidth": 100,
+        "children": []
+      },{
+        "id": "xczz",
+        "title": "乡村住宅",
+        "align":"center",
+        "minWidth": 100,
+        "children": []
+      }
+    ]
+  }
+
+}

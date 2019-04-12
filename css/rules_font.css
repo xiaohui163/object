@@ -1,0 +1,87 @@
+.right-content{
+    width: calc(100% - 110px);
+    left: 110px;
+}
+.sec-nav{
+    box-shadow: none;
+}
+.left-nav .layui-nav-item .sec-nav a{
+    background: linear-gradient(to right, #e7e7e7, #fff);
+}
+.collapse-content{
+    height: calc(100% - 110px);
+    padding-top: 30px;
+}
+
+.rules-lib-title{
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+.add-item{
+    float: right;
+}
+.collapse-content td,.collapse-content th{
+    text-align: center;
+    color: #999;
+    font:500 14px SoureceHanSansCN-Regular;
+    border-right: 1px solid #e6e6e6;
+}
+.collapse-content th{
+    font-size: 16px;
+    height: 38px;
+    border-bottom: 1px solid #e6e6e6;
+}
+table.dataTable.no-footer,.dataTables_wrapper.no-footer .dataTables_scrollBody,table.dataTable thead th, table.dataTable thead td{
+    border-bottom: none;
+}
+.dataTables_scrollHead{
+    border-radius: 5px 5px 0 0;
+}
+.dataTable thead{
+    width: 100%;
+    background: #def5fb;
+}
+.rules-lib-layer{
+    display: none;
+}
+.rules-lib-layer .layui-form{
+    padding-top: 15px;
+}
+.rules-lib-layer .layui-input-block{
+    width: 320px;
+}
+.btns{
+    text-align: center;
+    margin-bottom: 5px;
+}
+.show-only .btns{
+    display: none;
+}
+.rules-lib-layer .upload-item{
+    display: none;
+}
+.add-rules .upload-item{
+    display: block;
+}
+.add-rules .create-time{
+    display: none;
+}
+.add-rules .layui-upload-list{
+    margin-left: 110px;
+    width: 200px;
+    height: 100px;
+}
+.add-rules .layui-upload-img{
+    width: 100%;
+    height: calc(100% - 25px);
+}
+.add-rules .layui-upload-list{
+    background: url('../img/upload.png') center 20px no-repeat;
+}
+.layui-textarea{
+    resize: none;
+    min-height: 75px;
+}
+
+
