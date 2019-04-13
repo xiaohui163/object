@@ -319,7 +319,7 @@ span.content-text{
 .add-select .content-header .content-cell,
 .chooseFrom .content-header .content-cell{
     font-size: 14px;
-    line-height: 20px;
+    height: 100%;
 }
 .add-select span.content-text,
 .chooseFrom span.content-text{

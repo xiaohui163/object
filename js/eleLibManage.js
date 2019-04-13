@@ -1,5 +1,5 @@
 layui.use(['element','form','table','laytpl','layer'], function () {
-    var $ele = layui.element, $form = layui.form, $table = layui.table, $tpl = layui.laytpl, $layer = layui.layer;
+    var $form = layui.form, $tpl = layui.laytpl, $layer = layui.layer;
 
     /*加载树形结构--E*/
     renderTree('.ztree')
@@ -38,7 +38,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
         })
     }
 
-    var tableData;
+    //var tableData;
 
     /*加载折叠项内容--S*/
     /*$('.collapse-content').on('click','.colla-title',function(e){
@@ -121,44 +121,14 @@ layui.use(['element','form','table','laytpl','layer'], function () {
         $('.colla-icon',it).addClass('arrow-down')
 
         $(it).parents('.colla-item').find('.colla-content').html("");
-        let  dataId = $(it).parents('.colla-item').attr('data-id');
-        let url = '../data/eleLibContent.json'
-        renderColsDom($(it).parents('.colla-item').find('.colla-content'),url)
+        let dataId = $(it).parents('.colla-item').attr('data-id'),
+            selector = $(it).parents('.colla-item').find('.colla-content'),
+            url = '../data/eleLibContent.json'
+
+        renderColsDom(dataId,url,selector)
     })
 
-    function renderColsDom (it,url){
-        $.ajax({
-            url: url,
-            type:'post',
-            data:{
-                id: $(it).parent('.colla-item').attr('data-id')
-            },
-            dataType:'json'
-        }).done(function (res) {
-            if(res.tableId){
-                let dom = "", first, second;
-                let maxWidth = Math.floor($(it).parents('.colla-item').width() / res.data.length) + 'px'
-                for (let i = 0; i < res.data.length; i++) {
-                    dom += "<div class='content-box' style='max-width:"+ maxWidth +"'>";
-                    first = "", second = "";
-                    first += `<div class="content-header" data-id="${res.data[i].id}"><span class="content-cell">${res.data[i].title}</span><span class="layui-icon more-content" title="添加项目"></span></div>`
-                    second += `<div class="content-body">`;
-                    if(res.data[i].children.length > 0){
-                        for (let j = 0; j < res.data[i].children.length; j++) {
-                            second += `<div class="content-cell" data-id="${res.data[i].children[j].id}" data-pid="${res.data[i].id}"><span class="content-text">${res.data[i].children[j].title}</span><i class="layui-icon del-list-item" title="删除此项"></i></div>`
-                        }
-                    }
-                    first += second + `</div>`;
-                    dom += first;
-                    dom += `</div>`
-                }
-                $(it).html(dom);
-            }
-        }).fail(function(err){
-            console.log(err);
-        })
 
-    }
     /*加载折叠项内容--S*/
 
     //点击右侧编辑
@@ -239,7 +209,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
                     resize:false,
                     move:false,
                     tipsMore:true,
-                    offset:'100px',
+                    offset: '200px',
                     success:function(layero, index){
                         $(layero).attr('data-pId',pId);
                     }
@@ -313,7 +283,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
                 resize:false,
                 move:false,
                 tipsMore:true,
-                offset:'100px',
+                offset: '200px',
                 cancel:function(index, layero){
                     //$('.addColModel reset-form').click();
                     console.log(layero);
@@ -440,3 +410,36 @@ $('.collapse-content').on('click','.del-list-item',function (e) {
     e.stopPropagation();
 
 })
+
+function renderColsDom (id,url,selector){
+    $.ajax({
+        url: url,
+        type:'post',
+        data:"id="+id,
+        dataType:'json',
+    }).done(function (res) {
+        if(res.tableId){
+            let dom = "", first, second;
+            let maxWidth = Math.floor($(it).parents('.colla-item').width() / res.data.length) + 'px'
+            for (let i = 0; i < res.data.length; i++) {
+                dom += "<div class='content-box' style='max-width:"+ maxWidth +"'>";
+                first = "", second = "";
+                first += `<div class="content-header"><span class="content-cell" data-id="${res.data[i].id}">${res.data[i].title}</span><span class="layui-icon more-content" title="添加项目"></span></div>`
+                second += `<div class="content-body">`;
+                if(res.data[i].children.length > 0){
+                    for (let j = 0; j < res.data[i].children.length; j++) {
+                        second += `<div class="content-cell" data-id="${res.data[i].children[j].id}" data-pid="${res.data[i].id}"><span class="content-text">${res.data[i].children[j].title}</span><i class="layui-icon del-list-item" title="删除此项"></i></div>`
+                    }
+                }
+                first += second + `</div>`;
+                dom += first;
+                dom += `</div>`
+            }
+            if(!selector) return `<div class="choose-table">` + dom + `</div>`
+            $(selector).html(dom);
+        }
+    }).fail(function(err){
+        console.log(err);
+    })
+
+}

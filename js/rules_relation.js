@@ -54,6 +54,7 @@ function callbacka(ele, tablee) {
                             move: false,
                             area: ['500px', 'auto'],
                             tipsMore: false,
+                            offset: '200px',
                             success: function (layero, index) {
                                 $form.val("relation-lib", {
                                     "id": $(ele).attr('data-id')
@@ -91,6 +92,7 @@ function callbacka(ele, tablee) {
                             move: false,
                             area: ['500px', 'auto'],
                             tipsMore: true,
+                            offset: '200px',
                             success: function (layero, index) {
                                 $form.val("relation-lib", {
                                     "id": $(ele).attr('data-id')
@@ -145,6 +147,7 @@ layui.use(['form', 'layer', 'upload'], function () {
             move: false,
             area: ['500px', 'auto'],
             tipsMore: true,
+            offset: '200px',
             success: function (layero, index) {
 
             },
@@ -165,7 +168,6 @@ layui.use(['form', 'layer', 'upload'], function () {
     })
 
     //添加关系
-
     $('body').on('click','.rules-relation-layer .more-content',function(e){
         e.stopPropagation();
         let dom;
@@ -229,7 +231,12 @@ layui.use(['form', 'layer', 'upload'], function () {
 
     $('body').on('click','.add-relation .layui-input,.edit-relation .layui-input',function (e) {
         e.stopPropagation();
-        let it = this
+        let it = this, dataName = $(it).attr('name'), url = ""
+        if($(it).parents('.layui-form-item').hasClass('formula-realtion')){
+            url = "../data/eleLibTree.json"
+        }else if($(it).parents('.layui-form-item').hasClass('relation-rules')){
+            url = "../data/rulesLib.json"
+        }
         if($(it).hasClass('from')||$(it).hasClass('to')){
             $layer.open({
                 type: 1,
@@ -241,7 +248,9 @@ layui.use(['form', 'layer', 'upload'], function () {
                 move: false,
                 area: ['870px', '475px'],
                 tipsMore: true,
+                offset: '200px',
                 success: function (layero, index) {
+                    $('.layui-layer-content',layero).attr('data-name',dataName)
                     let asyncSetting = {
                         async: {
                             key:{
@@ -250,7 +259,7 @@ layui.use(['form', 'layer', 'upload'], function () {
                             autoParam:["id","name"],
                             dataFilter: filter,
                             enable: true,
-                            url: "../data/eleLibTree.json",
+                            url: url,
                             type: "post",
                         },
                         data: {
@@ -268,6 +277,7 @@ layui.use(['form', 'layer', 'upload'], function () {
                             selectedMulti: false
                         },
                         callback:{
+                            beforeClick:beforeDo,
                             onClick: ztreeChooseELe
                         }
                     };
@@ -275,11 +285,43 @@ layui.use(['form', 'layer', 'upload'], function () {
                 },
             })
         }else if($(it).hasClass('rule')){
-
+            //let dom = renderColsDom("",url,true);
+            let dom = ""
+            $layer.open({
+                type: 1,
+                content: dom,
+                title: '选择关联规则',
+                skin: 'choose-relation-rules',
+                shadeClose: false,
+                resize: false,
+                move: false,
+                area: ['870px', '475px'],
+                tipsMore: true,
+                offset: '200px',
+                success: function (layero, index) {
+                    $('.layui-layer-content', layero).attr('data-name', dataName)
+                }
+            })
         }
     })
 
+
+    //from-to弹窗表格选中
+    $('body').on('click','.choose-table .content-cell',function(e){
+        e.stopPropagation();
+        let it = this, dataName = $(it).parents('.layui-layer-content').attr('data-name'),
+        obj = {
+            name: $(it).text().trim(),
+            id: $(it).attr('data-id')
+        }
+        if($(it).parent().hasClass('content-body')){
+            obj.name = $(it).parent().siblings('.content-header').find('.content-cell').text().trim() + '-' +obj.name
+        }
+        $layer.close($layer.index);
+        $('.formula-realtion').find('.layui-input[name="'+dataName+'"]').val(obj.name).attr('data-id',obj.id)
+    })
 })
+
 function renderRulesRelation(res) {
     let formDom = "", rulesDom = ""
     for (let i = 0; i < res.data.from.length; i++) {
@@ -293,12 +335,9 @@ function renderRulesRelation(res) {
             `<input type="text" name="formula-to${toCount++}" readonly data-id="${res.data.to[i].id}" placeholder="请选择" autocomplete="off" class="layui-input to" value="${res.data.to[i].name}">`+
             `</div>`+
             `</div>`
-        fromCount = i;
-        toCount = i;
     }
     for (let k = 0; k < res.data.rules.length; k++) {
         rulesDom += `<input type="text" name="rules${rulesCount++}" readonly data-id="${res.data.to[k].id}" placeholder="请选择" autocomplete="off" class="layui-input rule" value="${res.data.rules[k].name}">`
-        rulesCount = k
     }
     $('.rules-relation-layer .formula-realtion .layui-input-block').remove()
     $('.rules-relation-layer .formula-realtion').append(formDom)
@@ -325,4 +364,11 @@ function ztreeChooseELe(event, treeId, treeNode) {
             })
         }
     })
+}
+
+
+function beforeDo (treeId, treeNode, clickFlag){
+    /*if(treeNode.lev == 1){
+        return false
+    }*/
 }
