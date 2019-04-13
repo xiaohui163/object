@@ -1,5 +1,5 @@
 $(function(){
-    let height = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height()
+    var height = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height();
     CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollY = height;
     CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollCollapse = true;
     CONSTANT.DATA_TABLES.DEFAULT_OPTION.fixedHeader = true;

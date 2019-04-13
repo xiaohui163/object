@@ -412,3 +412,6 @@ html, body {
     display: block;
 }
 
+.layui-layer .layui-layer-title{
+    background-color: #def5fb;
+}

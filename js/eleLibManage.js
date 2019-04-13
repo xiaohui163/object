@@ -105,22 +105,23 @@ layui.use(['element','form','table','laytpl','layer'], function () {
             })
         })
     })*/
-    //头部编辑按钮
+    //头部名称点击
     $('body').on('click','.colla-title',function(e){
         e.stopPropagation();
-        if($(this).parents('.colla-item').hasClass('active')){
-            $(this).parents('.colla-item').removeClass('active').removeClass('editable')
-            $('.colla-icon',this).removeClass('arrow-down').addClass('arrow-right')
+        let it = this, p = $(it).parents('.colla-item'), gp = $(p).parent();
+        if($(p).hasClass('active')){
+            $(p).removeClass('active').removeClass('editable')
+            $('.colla-icon',it).removeClass('arrow-down').addClass('arrow-right')
             return
         }
-        $('.colla-item').removeClass('editable').removeClass('active')
-        $(this).siblings('span').removeClass('active');
+        $('.colla-item',gp).removeClass('editable').removeClass('active')
+        $(p).toggleClass('active');
+        $(it).siblings('span').removeClass('active');
         $('.colla-icon.arrow-down').removeClass('arrow-down').addClass('arrow-right')
-        $('.colla-icon',this).addClass('arrow-down')
-        let it = this, dataId = $(it).parents('.colla-item').attr('data-id');
-        $(it).parents('.colla-item').toggleClass('active');
-        $(it).parents('.colla-item').find('.colla-content').html("");
+        $('.colla-icon',it).addClass('arrow-down')
 
+        $(it).parents('.colla-item').find('.colla-content').html("");
+        let  dataId = $(it).parents('.colla-item').attr('data-id');
         let url = '../data/eleLibContent.json'
         renderColsDom($(it).parents('.colla-item').find('.colla-content'),url)
     })
@@ -138,17 +139,18 @@ layui.use(['element','form','table','laytpl','layer'], function () {
                 let dom = "", first, second;
                 let maxWidth = Math.floor($(it).parents('.colla-item').width() / res.data.length) + 'px'
                 for (let i = 0; i < res.data.length; i++) {
-                    dom += "<ul class='content-box' style='max-width:"+ maxWidth +"'>";
+                    dom += "<div class='content-box' style='max-width:"+ maxWidth +"'>";
                     first = "", second = "";
-                    first += `<li class="content-header" data-id="${res.data[i].id}"><span class="content-cell">${res.data[i].title}</span><span class="layui-icon more-content" title="添加项目"></span></li>`
+                    first += `<div class="content-header" data-id="${res.data[i].id}"><span class="content-cell">${res.data[i].title}</span><span class="layui-icon more-content" title="添加项目"></span></div>`
+                    second += `<div class="content-body">`;
                     if(res.data[i].children.length > 0){
                         for (let j = 0; j < res.data[i].children.length; j++) {
-                            second += `<li class="content-cell" data-id="${res.data[i].children[j].id}" data-pid="${res.data[i].id}"><span class="content-text">${res.data[i].children[j].title}</span><i class="layui-icon del-list-item" title="删除此项"></i></li>`
+                            second += `<div class="content-cell" data-id="${res.data[i].children[j].id}" data-pid="${res.data[i].id}"><span class="content-text">${res.data[i].children[j].title}</span><i class="layui-icon del-list-item" title="删除此项"></i></div>`
                         }
                     }
-                    first += second
-                    dom += first
-                    dom += `</ul>`
+                    first += second + `</div>`;
+                    dom += first;
+                    dom += `</div>`
                 }
                 $(it).html(dom);
             }
@@ -160,18 +162,27 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     /*加载折叠项内容--S*/
 
     //点击右侧编辑
-    $('.collapse-content').on('click','.colla-edit',function(e){
+    $('.right-content').on('click','.colla-edit',function(e){
         e.stopPropagation();
-        //let ele = $(this).parents('.colla-item');
-        if($(this).hasClass('active') || $(this).hasClass('new-created')){
-            var text = $(this).siblings('.colla-title').find('.input-name').val()
-            $(this).siblings('.colla-title').find('.title-text').html(text);
-            $(this).parents('.colla-item').removeClass('editable').removeClass('new-created').find('.layui-table-cell .layui-icon-close').remove();
-            $(this).removeClass('active');
-            return;
+        let pEle = $(this).parents('.colla-item');
+        let text = $(pEle).find('.input-name').val().trim();
+        if($(pEle).hasClass('active')){
+            if($(pEle).hasClass('editable')){
+                $(pEle).removeClass('editable').find('.title-text').html(text)
+                $(this).removeClass('active')
+                return;
+            }else{
+                $(pEle).addClass('editable')
+                $(this).addClass('active')
+            }
+        }else{
+            $(this).siblings('.colla-title').click();
+            $(this).addClass('active').siblings('.layui-btn').removeClass('active');
+            $(pEle).addClass('editable').siblings('.colla-item').removeClass('editable');
         }
-        $(this).siblings('.colla-title').click();
-        $(this).addClass('active').siblings('.layui-btn').removeClass('active').parents('.colla-item').addClass('editable').siblings('.colla-item').removeClass('editable');
+
+        // $(this).parents('.colla-item').removeClass('editable').removeClass('new-created').find('.layui-table-cell .layui-icon-close').remove();
+
         //let del = '<i class="layui-icon layui-icon-close"></i>';
         //$(this).parents('.colla-item').find('.content-cell').append(del);
         //let str = "edit("+$(ele).find('.layui-border-box').attr('lay-id')+")";
@@ -181,8 +192,8 @@ layui.use(['element','form','table','laytpl','layer'], function () {
             //obj.del(); //删除当前行
             //obj.update(fields) //修改当前行数据
         })*/
-    })
-    $(".collapse-content").on("blur",'.input-name',function(){
+    });
+    $(".right-content .collapse-content").on("blur",'.input-name',function(){
         let text = $(this).val().trim();
         let pId = $(this).parents('.collapse-content').attr('data-id'), it = this
         $(this).siblings('.title-text').html(text);
