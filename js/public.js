@@ -369,6 +369,10 @@ function tableshow(ele, inputcolumns, tableele, url, deleteDom, userManage, delU
                 event.stopPropagation();
                 callbacka($(this), tableele);
             })
+            ele.find("td .rules-relation-td").unbind('click').bind('click',function(e){
+                e.stopPropagation();
+                chooseRulesCallback($(this),tableele)
+            })
         }
     })).api();
 
@@ -527,8 +531,12 @@ layui.use('form',function () {
             }
         },
         noEmpty: function (vale,item) {
-            if($('.from',item) == 0){
-                return '指向要素指标不能少于一个'
+            if($('.from',item).length == 0 ){
+                return '指向要素的指标不能少于一个！'
+            }
+            if($(".layui-input-block:nth(0) .from",item).val() == ""){
+                $(".layui-input-block:nth(0) .from",item).addClass('layui-form-danger')[0].focus()
+                return "不能为空！"
             }
         }
     });

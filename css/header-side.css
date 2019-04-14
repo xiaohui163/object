@@ -2,10 +2,12 @@ html, body {
     width: 100%;
     height: 100%;
 }
-.layui-logo.top-title{
+
+.layui-logo.top-title {
     width: 260px;
     text-align: left;
 }
+
 /*回到顶部*/
 .layui-fixbar {
     width: 44px;
@@ -129,7 +131,7 @@ html, body {
     display: none;
 }
 
-.layui-nav-item.layui-this>.nav-left-border {
+.layui-nav-item.layui-this > .nav-left-border {
     display: block;
 }
 
@@ -372,20 +374,22 @@ html, body {
 .active ~ .sec-nav {
     display: block;
 }
-.sec-nav dd{
+
+.sec-nav dd {
     width: 110px;
     height: 90px;
     background: linear-gradient(to right, #e7e7e787, #fff);
     border-bottom: 1px solid #e3e3e3;
     position: relative;
 }
-.left-nav .layui-nav-item .sec-nav a{
+
+.left-nav .layui-nav-item .sec-nav a {
     background: linear-gradient(to right, #e7e7e787, #fff);
 }
+
 /*.indicators {
     box-shadow: 3px 1px 8px 0 #deedf3;
 }*/
-
 
 
 .rules-class > div {
@@ -412,6 +416,19 @@ html, body {
     display: block;
 }
 
-.layui-layer .layui-layer-title{
+.layui-layer .layui-layer-title {
+    background: linear-gradient(to right, #a2ecff, #b3ffe2)
+}
+
+
+.dataTable tbody tr:hover {
     background-color: #def5fb;
 }
+
+
+
+/*
+.rules-relation-name,.rules-relation-formula,.relation-synopsis,.rules-create-time{
+    width: 100%;
+    height: 100%;
+} */

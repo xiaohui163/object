@@ -32,8 +32,7 @@ $(function(){
 var fromCount = 0, toCount = 0, rulesCount = 0
 function callbacka(ele, tablee) {
     layui.use(['form','layer'],function() {
-        var $ele = layui.element, $form = layui.form, $table = layui.table, $tpl = layui.laytpl,
-            $layer = layui.layer;
+        var $form = layui.form, $layer = layui.layer;
 
         if ($(ele).hasClass('rules-name')) {//点击名称显示信息
             $.ajax({
@@ -115,26 +114,42 @@ function callbacka(ele, tablee) {
     })
 }
 
+function chooseRulesCallback(ele,tablee){
+    layui.use(['form','layer'],function() {
+        var $form = layui.form, $layer = layui.layer;
+        if (['rules-name','rules-formula','synopsis','rules-create-time'].indexOf($(ele)[0].classList[0]) != -1){
+            let nameTd =  $(ele).closest('tr').find('.rules-name'),
+                ruleObj = {
+                    id:$(nameTd).attr('data-id'),
+                    name: $(nameTd).text().trim()
+                },
+                chooseInp = $(ele).parents('.layui-layer-content').attr('data-name')
+            $layer.close($layer.index)
+            $('.relation-rules').find('.layui-input.rule[name="'+ chooseInp +'"]').val(ruleObj.name).attr('data-id',ruleObj.id)
+        }
+    })
+}
+
 layui.use(['form', 'layer', 'upload'], function () {
     let $form = layui.form, $layer = layui.layer, $upload = layui.upload
     var uploadInst = "";
     //点击增加一行
     $('.add-item').click(function (e) {
         if($('.formula-realtion .layui-input-block').length == 0){
-            let freomDom = `<div class="layui-input-block">`+
-                `<div class="layui-form-mid">form</div>`+
-                `<div class="layui-input-inline fromA">`+
-                `<input type="text" name="formula-from${fromCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input from" value="" required>`+
-                `</div>`+
-                `<div class="layui-form-mid" style="margin-left: 4px;">to</div>`+
-                `<div class="layui-input-inline toB">`+
-                `<input type="text" name="formula-to${toCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input to" value="">`+
-                `</div>`+
-                `</div>`
+            let freomDom = '<div class="layui-input-block">'+
+                '<div class="layui-form-mid">form</div>'+
+                '<div class="layui-input-inline fromA">'+
+                '<input type="text" name="formula-from'+(fromCount++)+'" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input from" value="" required>'+
+                '</div>'+
+                '<div class="layui-form-mid" style="margin-left: 4px;">to</div>'+
+                '<div class="layui-input-inline toB">'+
+                '<input type="text" name="formula-to'+(toCount++)+'" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input to" value="">'+
+                '</div>'+
+                '</div>'
             $('.formula-realtion').append(freomDom)
         }
         if($('.relation-rules .layui-input-block input').length == 0){
-            let ruleDom = `<input type="text" name="rules${rulesCount++}" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input rule" value="">`
+            let ruleDom = '<input type="text" name="rules'+(rulesCount++)+'" readonly data-id="" placeholder="请选择" autocomplete="off" class="layui-input rule" value="">'
             $('.relation-rules .layui-input-block').append(ruleDom)
         }
         $layer.open({
@@ -153,8 +168,8 @@ layui.use(['form', 'layer', 'upload'], function () {
             },
             cancel: function (index, layero) {
                 $('.rules-relation-layer form')[0].reset()
-                $('.fromA .from',layero).not('[name="formula-from"]').remove()
-                $('.toB .to',layero).not('[name="formula-to"]').remove()
+                $('.rules-relation-layer .formula-realtion .layui-input-block').remove()
+                $('.relation-rules .layui-input-block input').remove()
                 fromCount = 0, toCount = 0, rulesCount = 0
             }
         })
@@ -165,6 +180,7 @@ layui.use(['form', 'layer', 'upload'], function () {
         $('.rules-relation-layer .formula-realtion .layui-input-block').remove()
         $('.relation-rules .layui-input-block input').remove()
         $layer.closeAll('page');
+        fromCount = 0, toCount = 0, rulesCount = 0
     })
 
     //添加关系
@@ -202,6 +218,7 @@ layui.use(['form', 'layer', 'upload'], function () {
                 dataType: "json",
                 success:function(res){
                     if(res.success){
+                        $layer.close($layer.index)
                         $layer.msg('修改成功！')
                     }
                 },
@@ -217,6 +234,7 @@ layui.use(['form', 'layer', 'upload'], function () {
                 dataType: "json",
                 success:function(res){
                     if(res.success){
+                        $layer.close($layer.index)
                         $layer.msg('添加成功！')
                     }
                 },
@@ -286,7 +304,16 @@ layui.use(['form', 'layer', 'upload'], function () {
             })
         }else if($(it).hasClass('rule')){
             //let dom = renderColsDom("",url,true);
-            let dom = ""
+            let dom = "<div class='choose-rules'><table id='chooseRulesTable'>" +
+                "<thead>" +
+                "<tr>" +
+                "<th>名称</th>\n" +
+                "<th>公式</th>\n" +
+                "<th>内容</th>\n" +
+                "<th>创建时间</th>" +
+                "</tr>" +
+                "</thead>" +
+                "</table></div>"
             $layer.open({
                 type: 1,
                 content: dom,
@@ -300,6 +327,37 @@ layui.use(['form', 'layer', 'upload'], function () {
                 offset: '200px',
                 success: function (layero, index) {
                     $('.layui-layer-content', layero).attr('data-name', dataName)
+                    var table_a = null;
+                    let height = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height()
+                    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollY = height;
+                    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollCollapse = true;
+                    CONSTANT.DATA_TABLES.DEFAULT_OPTION.fixedHeader = true;
+                    colmuns = [
+                        {
+                            data: "name",
+                            render: function (data, type, row) {
+                                return '<p class="rules-name rules-relation-td" data-id="' + row.id + '">' + data + '</p>'
+                            }
+                        }, {
+                            data: "formula",
+                            render: function (data, type, row) {
+                                return '<div class="rules-formula rules-relation-td">' + data + '</div>'
+                            }
+                        }, {
+                            data: 'synopsis',
+                            render: function (data, type, row) {
+                                return '<p class="synopsis rules-relation-td">' + data + '</p>'
+                            }
+                        }, {
+                            data: 'time',
+                            render: function (data, type, row) {
+                                return '<p class="rules-create-time rules-relation-td">' + data + '</p>'
+                            }
+                        }
+                    ]
+                    let table_url = '../data/rulesLib.json'
+
+                    tableshow($("#chooseRulesTable"), colmuns, table_a, table_url, $('.btn-del'), userManage, "undefined");
                 }
             })
         }

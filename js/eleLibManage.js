@@ -420,7 +420,7 @@ function renderColsDom (id,url,selector){
     }).done(function (res) {
         if(res.tableId){
             let dom = "", first, second;
-            let maxWidth = Math.floor($(it).parents('.colla-item').width() / res.data.length) + 'px'
+            let maxWidth = Math.floor($(selector).parents('.colla-item').width() / res.data.length) + 'px'
             for (let i = 0; i < res.data.length; i++) {
                 dom += "<div class='content-box' style='max-width:"+ maxWidth +"'>";
                 first = "", second = "";
