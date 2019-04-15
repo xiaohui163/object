@@ -1,6 +1,8 @@
 {
   "status": true,
   "data": {
-    "imgUrl": ""
+    "imgUrl": "../img/5touxiang.png",
+    "userID":"1007",
+    "userName": "张斌"
   }
 }

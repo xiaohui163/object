@@ -42,6 +42,84 @@ html, body {
     margin: 19px 0 0 24px;
 }
 
+.user-login-state {
+    position: absolute;
+    right: 38px;
+    top: 12px;
+}
+
+.user-login-state>*{
+    display: inline-block;
+}
+
+.user-pic {
+    margin-right: 10px;
+    width: 32px;
+    height: 35px;
+}
+
+.user-pic img {
+    width: 100%;
+    height: 100%;
+}
+
+.user-name {
+    margin-right: 6px;
+    font: 16px SourceHanSansCN-Medium;
+    color: #66717d;
+    vertical-align: middle;
+}
+
+.user-pannel-down {
+    width: 20px;
+    height: 20px;
+    background: url("../img/5xiala.png") center no-repeat;
+    padding: 0;
+}
+
+.person_menu {
+    position: absolute;
+    top: 45px;
+    right: 0px;
+    display: none;
+    background: #fff;
+    border: 1px solid #3ac9c3;
+    border-radius: 5px;
+    width: 120px;
+    padding: 10px;
+}
+
+.user-pannel-down.active ~ .person_menu {
+    display: block;
+}
+
+.arrow {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: -9px;
+    right: 15px;
+    border-top: 1px solid #3ac9c3;
+    border-left: 1px solid #3ac9c3;
+    transform: rotate(45deg);
+    background: #fff;
+}
+
+.person_menu_ul li{
+    width: 100%;
+    height: 40px;
+    float: none;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+}
+
+.person_menu_ul li:hover{
+    background: linear-gradient(to right, #72b9f1, #52e6e8);
+}
+
 /*左侧导航*/
 .layui-layout-admin .left-nav {
     width: 110px;
@@ -421,19 +499,22 @@ html, body {
 }
 
 /*删除提示框*/
-.layui-layer.del-confirm{
+.layui-layer.del-confirm {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-.layui-layer.del-confirm .layui-layer-content{
-    font:700 16px SourceHanSansCN-Blod;
+
+.layui-layer.del-confirm .layui-layer-content {
+    font: 700 16px SourceHanSansCN-Blod;
     text-align: center;
     color: #666;
 }
-.del-confirm .layui-layer-btn{
+
+.del-confirm .layui-layer-btn {
 }
-.del-confirm .layui-layer-btn a{
+
+.del-confirm .layui-layer-btn a {
     margin: 0;
     width: 52px;
     height: 26px;
@@ -442,15 +523,16 @@ html, body {
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
-.layui-layer.del-confirm .layui-layer-btn0{
-    background: linear-gradient(to right,#40a2fc,#7de2e9);
-    font:700 14px/26px SourceHanSansCN-Bold;
-    color:#fff;
+
+.layui-layer.del-confirm .layui-layer-btn0 {
+    background: linear-gradient(to right, #40a2fc, #7de2e9);
+    font: 700 14px/26px SourceHanSansCN-Bold;
+    color: #fff;
     margin-right: 18px;
     border: none;
 }
 
-.layui-layer.del-confirm .layui-layer-btn1{
+.layui-layer.del-confirm .layui-layer-btn1 {
     height: 24px;
     font: 14px/26px SourceHanSansCN-Medium;
     color: #8d8d8d;
