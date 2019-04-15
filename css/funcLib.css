@@ -1,0 +1,502 @@
+/* 函数描述*/
+.func-describe{
+    width: calc(100% - 2vw);
+    height: 30vh;
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    margin-top: 4vh;
+}
+.describe-left{
+    width: 56vw;
+    padding: 2vh 1vw;
+    font-size: 0.8vw;
+    line-height: 3vh;
+}
+.describe-left p{
+    font-size: 1vw;
+    color: #606060;
+    font-weight: bold;
+}
+.describe-left .imgs{
+    width: 5vw;
+    margin: 2vh 0;
+    font-size: 1.2vw;
+    font-weight: bold;
+    background: linear-gradient(to right,#40a2fc,#7de2e9);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+.describe-left .derline{
+    padding: 0 0 1vh 0;
+    width: 12vw;
+    margin-bottom: 1vh;
+    border-bottom: 1px solid #dddddd;
+}
+.ening{
+    color: #66717d;
+    font-size: 0.9vw;
+    font-weight: bold;
+}
+.describe-right{
+    width: 44vw;
+    padding: 2vh 1.5vw;
+    border-radius: 10px;
+    background: #f3f9f9;
+}
+
+.describe-right .title{
+    color: #606060;
+    font-size: 1vw;
+    font-weight: bold;
+    padding-left: 1.2vw;
+}
+.describe-right .title .btn{
+    float: right;
+    background-image: url('../img/3btn_01.png');
+    display: inline-block;
+    width: 70px;height: 37px;
+}
+.describe-right .title .btn img{
+    height: 20px;
+    cursor: pointer;
+    margin-left: 11px;
+    margin-top: 7px;
+}
+.describe-right .common-func{
+    padding: 2vh 1.5vw 2vh 0;
+}
+.describe-right .common-func ul{
+    width: 20.2vw;
+}
+.describe-right .common-func ul li{
+    clear: both;
+    width: 100%;
+    font-size: 1vw;
+    color: rgba(96,96,96,0.7);
+    text-align: left;
+    padding: 2vh 2px 1vh;
+    border-bottom: 1px solid #dddddd
+}
+/*科学计算器*/
+.calculator{
+    width: calc(100% - 2vw);
+
+    margin-top: 7vh;
+}
+.calculator .nav{
+    width: 41vw;
+    height: 4.1vh;
+    font-weight: bold;
+    font-size: 0.9vw;
+    color: #ffffff;
+    padding: 1vh 0 0 0.8vw;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background: #7edbef;
+}
+
+.calculator .calculator-box{
+    display: flex;
+    padding: 1vh 0.5vw;
+    margin-top: -1vh;
+    border-radius: 10px;
+    background: white;
+}
+.calculator .calculator-item{
+    width: 552px;
+    display: flex;
+}
+/*历史记录*/
+.calculator #calculator-msg{
+    width: 170px;
+    height: 100%;
+    overflow-y: auto;
+    background: #ececec;
+    position: relative;
+}
+/*标题*/
+#calculator-msg .title{
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 5px;
+}
+#calculator-msg .title span{
+    padding: 5px;
+    cursor: pointer;
+}
+#calculator-msg .title .a{
+    border-bottom: 2px solid blue
+}
+/*计算器显示记录*/
+.calculator #calculator-msg #jilu{
+    overflow-y: auto;
+    height: 286px;
+    padding-bottom: 10px;
+}
+.calculator #calculator-msg p{
+    text-align: right;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold
+}
+.calculator #calculator-msg .detl{
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    cursor: pointer;
+}
+
+/*计算器右边记录*/
+.calculator .calculator-right{
+    width: calc(100% - 552px);
+    height: 24vh;
+    padding: 5vh 2vw 3.5vh 2vw;
+    position: relative;
+}
+.calculator .calculator-right ul{
+
+}
+.calculator .calculator-right ul li{
+    cursor: default;
+    clear: both;
+    width: 100%;
+    font-size: 1vw;
+    color: rgba(96,96,96,0.7);
+    text-align: left;
+    padding: 2vh 2px 1vh;
+    border-bottom: 1px solid #dddddd
+}
+.calculator .calculator-right .edit{
+    float: right;
+}
+.calculator .calculator-right .edit span{
+    margin-left: 1vw;
+    cursor: pointer;
+}
+
+.calculator .calculator-right .keep{
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    position: absolute;
+    right:0;
+    bottom: 14px;
+    width: 61px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    background: linear-gradient(to right,#40a2fc,#7de2e9);
+}
+/*右侧折叠面板*/
+.collapse-content {
+    width: calc(100% - 102px);
+    height: calc(100% - 456px);
+    border: none;
+    margin-top: 20px;
+    padding-bottom: 80px;
+    overflow-y: auto;
+}
+
+.colla-item {
+    width: 100%;
+    margin-bottom: 7px;
+}
+
+.editable .title-text {
+    display: none;
+}
+
+.input-name {
+    display: none;
+    font: 700 20px SoureceHanSansCN-Blod;
+    color: #575f66;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(53, 53, 57, 0.7);
+    padding-left: 14px;
+}
+
+.editable .input-name {
+    display: inline-block;
+}
+
+.item-top {
+    width: 100%;
+    height: 58px;
+    background: #def5fb;
+    border-radius: 5px;
+}
+
+.colla-title {
+    float: left;
+    font: 700 20px/52px SoureceHanSansCN-Blod;
+    color: #575f66;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    line-height: 58px;
+}
+
+.collapse-content .active .colla-title,
+.collapse-content .item-top:hover .colla-title {
+    width: calc(100% - 180px);
+}
+
+.colla-icon {
+    float: left;
+    width: 9px;
+    height: 15px;
+    margin-left: 13px;
+    margin-top: 22px;
+    margin-right: 10px;
+    background: url('../img/icon01.png') center no-repeat;
+}
+
+.colla-icon.arrow-down {
+    width: 15px;
+    height: 9px;
+    margin-left: 9px;
+    margin-top: 25px;
+    background-image: url('../img/open_icon.png');
+}
+
+.item-top > .layui-btn {
+    float: right;
+    width: 58px;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    display: none;
+}
+
+.active .item-top > .layui-btn,
+.item-top:hover > .layui-btn {
+    display: block;
+}
+
+.colla-edit {
+    background: url("../img/bianji_icon.png") center no-repeat;
+}
+
+.clloa-add-col {
+    background: url("../img/jialie_icon.png") center no-repeat;
+}
+
+.colla-del {
+    background: url("../img/shanchu_icon.png") center no-repeat;
+}
+
+.item-top > .layui-btn:hover, .item-top > .layui-btn.active {
+    background-color: #e2fff8;
+}
+
+/*右侧表格*/
+.colla-content {
+    background-color: #fff;
+    display: none;
+    margin: 0;
+    width: 100%;
+    height: 230px;
+    overflow-y: auto;
+    border-radius: 0 0 5px 5px;
+    font: 500 16px SoureceHanSansCN-Regular;
+    color: #999999;
+}
+
+.colla-item.active .item-top {
+    border-radius: 5px 5px 0 0;
+    background: linear-gradient(to right, #a2ecff, #b3ffe2);
+}
+
+.colla-item .item-top:hover {
+    background: linear-gradient(to right, #a2ecff, #b3ffe2);
+}
+
+.colla-item.active .colla-content {
+    display: block;
+}
+
+.content-box {
+    min-width: 102px;
+    width: auto;
+    height: 100%;
+    border-right: 1px solid #e6e6e6;
+    float: left;
+}
+
+/*.content-box:last-child{
+    border-right: none;
+}*/
+.content-header {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #e6e6e6;
+    float: left;
+    line-height: 60px;
+    text-align: center;
+}
+
+.content-header > .content-cell {
+    width: calc(100% - 20px);
+}
+
+.content-cell {
+    width: 100%;
+    display: inline-block;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+}
+
+.more-content {
+    width: 12px;
+    height: 12px;
+    background: url("../img/tianjia_btn.png") center no-repeat;
+    margin-top: 25px;
+}
+
+.del-list-item {
+    width: 7px;
+    height: 7px;
+    background: url("../img/shanchu_btn.png") center no-repeat;
+    margin-top: 10px;
+}
+
+
+.content-box .content-cel:nth-child(2) {
+    margin-top: 12px;
+}
+
+
+.collapse-content .del-list-item,
+.collapse-content .more-content {
+    display: none;
+    float: right;
+    cursor: pointer;
+    margin-right: 7px;
+}
+
+.editable .more-content,
+.editable .del-list-item {
+    display: block;
+}
+
+/*增加列弹窗*/
+.addColModel {
+    display: none;
+}
+
+.addColModel .add-col-form {
+    padding-top: 15px;
+}
+
+
+.addColModel .btns {
+    text-align: center;
+}
+
+
+.addColModel .layui-btn {
+    width: 71px;
+    height: 32px;
+    font: 14px/28px SoureceHanSansCN-Medium;
+}
+
+.addColModel .submit-layer {
+    margin-left: 0;
+    margin-right: 35px;
+}
+
+.addColModel .layui-input {
+    margin-bottom: 10px;
+}
+
+.addColModel .more-content {
+    display: inline-block;
+    margin-top: 13px;
+    margin-right: 13px;
+}
+
+.add-select .layui-form-item {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.add-select .layui-input-block {
+    margin-left: 10px;
+    width: 185px;
+}
+
+.add-select .layui-select-title {
+    position: absolute;
+}
+
+.add-select .layui-select-title .layui-input {
+    width: 135px;
+    height: 30px;
+    background-color: #d7ebff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.add-select .layui-select-group {
+    width: 185px;
+    height: 176px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #d7ebff;
+    top: 30px;
+}
+
+.add-select .layui-form-select dt {
+    font: 14px SoureceHanSansCN-Blod;
+}
+
+.add-select .layui-form-select dd {
+    font: 14px SoureceHanSansCN-Blod;
+    color: #747c87;
+}
+
+.selected-render-box {
+    width: 850px;
+    height: 200px;
+}
+
+.selected-render-box .colla-item {
+    margin-left: 10px;
+    overflow: auto;
+}
+.add-select .item-top{
+    height: 40px;
+}
+.add-select .colla-title{
+    line-height: 40px;
+    font-size: 16px;
+}
+.add-select .item-top > .layui-btn,
+.add-select .item-top:hover > .layui-btn {
+    display: none;
+}
+
+.add-select .colla-content{
+    height: 167px;
+}
+.add-select .colla-icon{
+    margin-top: 13px;
+}
+.add-select .content-cell{
+    font-size: 12px;
+}
+.add-select .content-header{
+    height: 45px;
+    line-height: 45px;
+}
+.add-select .content-header .content-cell{
+    font-size: 14px;
+}
