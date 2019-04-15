@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>BIAD-要素库管理</title>
+        <link rel="stylesheet" href="../plugin/layui-v2.4.5/layui/css/layui.css">
+        <link rel="stylesheet" href="../plugin/zTree_v3/css/zTreeStyle/zTreeStyle_3_4.css">
+        <link rel="stylesheet" href="../css/header-side.css">
+        <link rel="stylesheet" href="../css/rules_visual.css">
+    </head>
+    <body class="layui-layout-body">
+    <ul class="layui-fixbar layui-hide">
+        <li class="layui-icon layui-fixbar-top" lay-type="top" style="display: list-item;"></li>
+        <li class="layui-icon more" lay-type="top" style="display: list-item;">&#xe65f;</li>
+    </ul>
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <h2 class="layui-logo top-title"><strong>BIAD-</strong>要素管理</h2>
+        </div>
+        <div class="layui-side left-nav">
+            <ul class="layui-nav layui-nav-tree" lay-filter="nav_ul">
+                <li class="layui-nav-item dictionary">
+                    <a class="nav-item" href="javascript:;">
+                        <i class="nav-icon"></i>
+                        <span class="nav-text">字典管理</span>
+                    </a>
+                    <span class="nav-left-border"></span>
+                </li>
+                <li class="layui-nav-item element">
+                    <a class="nav-item" href="javascript:;">
+                        <i class="nav-icon"></i>
+                        <span class="nav-text">要素库</span>
+                    </a>
+                    <span class="nav-left-border"></span>
+                </li>
+                <li class="layui-nav-item rules">
+                    <a class="nav-item" href="javascript:;">
+                        <i class="nav-icon"></i>
+                        <span class="nav-text">规则库</span>
+                    </a>
+                    <span class="more-right"></span>
+                    <span class="nav-left-border"></span>
+                    <dl class="sec-nav">
+                        <dd class="indicators">
+                            <a class="nav-item" href="javascript:;">
+                                <i class="nav-icon"></i>
+                                <span class="nav-text">指标库</span>
+                            </a>
+                            <span class="nav-left-border"></span>
+                        </dd>
+                        <dd class="function">
+                            <a class="nav-item" href="javascript:;">
+                                <i class="nav-icon"></i>
+                                <span class="nav-text">函数库</span>
+                            </a>
+                            <span class="nav-left-border"></span>
+                        </dd>
+                        <dd class="font-end">
+                            <a class="nav-item" href="javascript:;">
+                                <i class="nav-icon"></i>
+                                <span class="nav-text">规则库·前台</span>
+                            </a>
+                            <span class="nav-left-border"></span>
+                        </dd>
+                        <dd class="rules-relation">
+                            <a class="nav-item" href="javascript:;">
+                                <i class="nav-icon"></i>
+                                <span class="nav-text">规则关系库</span>
+                            </a>
+                            <span class="nav-left-border"></span>
+                        </dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item rules-visual layui-this">
+                    <a class="nav-item" href="javascript:;">
+                        <i class="nav-icon"></i>
+                        <span class="nav-text">规则可视化</span>
+                    </a>
+                    <span class="nav-left-border"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="tree">
+            <h3 class="tree-title">
+                <p class="title-text">要素规则展示</p>
+                <span class="layui-badge-dot"></span>
+            </h3>
+            <div id="treeDemo" class="tree-content ztree"></div>
+        </div>
+    </div>
+
+    <!--自定义内容-s-->
+    <div class="right-content">
+        <div class="content-tools layui-clear layui-hide">
+            <form class="layui-form select-search" action="">
+                <select lay-ignore class="selector" name="type" id="">
+                    <option value="zh">综合</option>
+                </select>
+                <input class="search" type="search" placeholder="搜索要素">
+                <span class="layui-icon layui-icon-search"></span>
+            </form>
+            <span class="layui-btn add-item"></span>
+            <span class="attachment"></span>
+        </div>
+        <div class="collapse-content">
+            <ul class="node-edit-tools">
+                <li class="tools-item msg">信息</li>
+                <li class="tools-item remind">提醒</li>
+                <li class="tools-item setting">设置</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="top-tips">
+        <form action="" class="layui-form">
+            <div class="layui-form-item">
+                <input type="radio" class="choosing" name="choosing" value="colm" title="自定义">
+                <input type="radio" class="choosing" name="choosing" value="colm" title="条件选择">
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn submit-layer">确定</button>
+                <button class="layui-btn cancel-layer">取消</button>
+            </div>
+        </form>
+    </div>
+    <!--自定义内容-e-->
+
+
+    <script src="../plugin/jquery-3.3.1.js"></script>
+    <script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
+    <script src="../plugin/zTree_v3/js/jquery.ztree.all.js"></script>
+    <script src="../js/public.js"></script>
+    <script src="../js/rules_visual.js"></script>
+    </body>
+
+</html>

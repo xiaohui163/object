@@ -33,7 +33,7 @@ $('body').on('click','.reset-form',function(e){
 
 /*加载树形结构--S*/
 let zTreeObj;
-function renderTree(dom,multi) {
+function renderTree(dom,url,multi) {
     let asyncSetting = {
         async: {
             key:{
@@ -42,7 +42,7 @@ function renderTree(dom,multi) {
             autoParam:["id","name"],
             dataFilter: filter,
             enable: true,
-            url: "../data/eleLibTree.json",
+            url: url,
             type: "post",
         },
         data: {

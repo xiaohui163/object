@@ -39,7 +39,7 @@ html, body {
 .layui-layout-admin .top-title {
     color: #545456;
     font: 24px/20px Arial-Black, SoureceHanSansCN-Regular;
-    margin: 19px 0 19px 24px;
+    margin: 19px 0 0 24px;
 }
 
 /*左侧导航*/
@@ -118,7 +118,10 @@ html, body {
 }
 
 .rules-visual .nav-icon {
-    background-image: url('../img/1icon-zidiangguanli.png');
+    background-image: url('../img/1icon-yaosuk.png');
+    width: 44px;
+    height: 44px;
+    margin: 14px 14px 6px 14px;
 }
 
 .nav-left-border {

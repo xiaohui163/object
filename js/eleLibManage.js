@@ -2,7 +2,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     var $form = layui.form, $tpl = layui.laytpl, $layer = layui.layer;
 
     /*加载树形结构--E*/
-    renderTree('.ztree')
+    renderTree('.ztree',"../data/eleLibTree.json")
 
     //改变树形结构后提交后台
     function changeTreeNode(id,parentTId,name,type,it) {
