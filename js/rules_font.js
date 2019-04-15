@@ -100,28 +100,11 @@ function callbacka(ele, tablee) {
                 }
             })
         } else if ($(ele).hasClass('btn-del')) {
-            delConfirm('是否删除当前行?', delFunc(ele))
+            delFunc.ele = ele
+            ('是否删除当前行?', delFunc)
         }
     })
 
-}
-
-function delFunc(ele) {
-    let id = $(ele).parents('.rules-operation').attr('data-id')
-    $.ajax({
-        url: "#",
-        data: "id=" + id,
-        type: 'post',
-        dataType: 'json',
-        success: function (res) {
-            if (res.success) {
-                $(ele).parents('tr').remove();
-            }
-        },
-        error: function (err) {
-            console.log(err)
-        }
-    })
 }
 
 $('body').on('click', '.edit-rules .cancel-layer', function (e) {

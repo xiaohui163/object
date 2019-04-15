@@ -18,7 +18,7 @@
 
 .input-name {
     display: none;
-    font: 700 20px SoureceHanSansCN-Blod;
+    font: 700 20px SourceHanSansCN-Blod;
     color: #575f66;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -40,7 +40,7 @@
 
 .colla-title {
     float: left;
-    font: 700 20px/52px SoureceHanSansCN-Blod;
+    font: 700 20px/52px SourceHanSansCN-Blod;
     color: #575f66;
     cursor: pointer;
     width: 100%;
@@ -268,11 +268,11 @@ span.content-text{
 }
 
 .add-select .layui-form-select dt {
-    font: 14px SoureceHanSansCN-Blod;
+    font: 14px SourceHanSansCN-Blod;
 }
 
 .add-select .layui-form-select dd {
-    font: 14px SoureceHanSansCN-Blod;
+    font: 14px SourceHanSansCN-Blod;
     color: #747c87;
 }
 

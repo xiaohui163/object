@@ -110,6 +110,10 @@ function callbacka(ele, tablee) {
                     }
                 }
             })
+        }else if($(ele).hasClass('btn-del')){
+            //删除当前行
+            delFunc.ele = ele
+            delConfirm('是否删除当前行？',delFunc)
         }
     })
 }
@@ -378,6 +382,8 @@ layui.use(['form', 'layer', 'upload'], function () {
         $layer.close($layer.index);
         $('.formula-realtion').find('.layui-input[name="'+dataName+'"]').val(obj.name).attr('data-id',obj.id)
     })
+
+
 })
 
 function renderRulesRelation(res) {

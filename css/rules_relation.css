@@ -115,3 +115,13 @@
 .layui-input[readonly] {
     cursor: pointer;
 }
+
+/*暂时只显示一行，不可添加-s*/
+.formula-realtion .layui-input-block:nth-child(3)~.layui-input-block,
+.relation-rules .rule:first-child~.rule,
+.edit-relation .more-content,
+.add-relation .more-content{
+    display: none;
+}
+/*暂时只显示一行，不可添加-s*/
+

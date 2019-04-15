@@ -207,6 +207,8 @@ $('.layui-nav-item').click(function(e){
     //e.stopPropagation();
     $('.more-right').removeClass('active');
 })
+
+//删除询问框
 function delConfirm(msg,func) {
     layui.use('layer', function () {
         let $layer = layui.layer
@@ -216,9 +218,9 @@ function delConfirm(msg,func) {
             btn:['确认','取消'],
             skin:'del-confirm',
             area:['192px','112px'],
-            btnAlign:'center'
+            btnAlign:'c'
         },function(index){
-            func
+            func.act()
         },function(index){
             $layer.close(index)
         })
@@ -541,3 +543,28 @@ layui.use('form',function () {
         }
     });
 })
+
+//表格删除tr弹窗回调
+let delFunc = {
+    ele: "",
+    act:function () {
+        let ele = this.ele
+        let id = $(ele).parent('').attr('data-id')
+        $.ajax({
+            url: "#",
+            data: "id=" + id,
+            type: 'post',
+            dataType: 'json',
+            success: function (res) {
+                if (res.success) {
+                    $(ele).parents('tr').remove();
+                    layui.layer.close(layui.layer.index)
+                }
+            },
+            error: function (err) {
+                console.log(err)
+                layui.layer.close(layui.layer.index)
+            }
+        })
+    }
+}

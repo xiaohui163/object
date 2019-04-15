@@ -148,7 +148,7 @@ html, body {
 
 .tree-title {
     padding: 24px 0 15px 8px;
-    font: 700 22px SoureceHanSansCN-Blod;
+    font: 700 22px SourceHanSansCN-Blod;
     color: #545456;
     border-bottom: 1px solid #e2e2e2;
 }
@@ -346,7 +346,6 @@ html, body {
     overflow-x: visible;
 }
 
-
 .more-right {
     width: 20px;
     height: 20px;
@@ -387,11 +386,6 @@ html, body {
     background: linear-gradient(to right, #e7e7e787, #fff);
 }
 
-/*.indicators {
-    box-shadow: 3px 1px 8px 0 #deedf3;
-}*/
-
-
 .rules-class > div {
     width: 105px;
     height: 26px;
@@ -406,10 +400,9 @@ html, body {
 
 .rules-class .active {
     font-weight: 700;
-    font-family: SoureceHanSansCN-Blod;
+    font-family: SourceHanSansCN-Blod;
     color: #69acff;
 }
-
 
 .sec-nav .layui-this .nav-left-border,
 .sec-nav dd:hover .nav-left-border {
@@ -420,15 +413,43 @@ html, body {
     background: linear-gradient(to right, #a2ecff, #b3ffe2)
 }
 
-
 .dataTable tbody tr:hover {
     background-color: #def5fb;
 }
 
+/*删除提示框*/
+.layui-layer.del-confirm{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.layui-layer.del-confirm .layui-layer-content{
+    font:700 16px SourceHanSansCN-Blod;
+    text-align: center;
+    color: #666;
+}
+.del-confirm .layui-layer-btn{
+}
+.del-confirm .layui-layer-btn a{
+    margin: 0;
+    width: 52px;
+    height: 26px;
+    text-align: center;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.layui-layer.del-confirm .layui-layer-btn0{
+    background: linear-gradient(to right,#40a2fc,#7de2e9);
+    font:700 14px/26px SourceHanSansCN-Bold;
+    color:#fff;
+    margin-right: 18px;
+    border: none;
+}
 
-
-/*
-.rules-relation-name,.rules-relation-formula,.relation-synopsis,.rules-create-time{
-    width: 100%;
-    height: 100%;
-} */
+.layui-layer.del-confirm .layui-layer-btn1{
+    height: 24px;
+    font: 14px/26px SourceHanSansCN-Medium;
+    color: #8d8d8d;
+    background-color: #fff;
+}
