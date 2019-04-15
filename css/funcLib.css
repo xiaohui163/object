@@ -81,8 +81,7 @@
 /*科学计算器*/
 .calculator{
     width: calc(100% - 2vw);
-
-    margin-top: 7vh;
+    margin-top: 5vh;
 }
 .calculator .nav{
     width: 41vw;
@@ -150,7 +149,7 @@
 /*计算器右边记录*/
 .calculator .calculator-right{
     width: calc(100% - 552px);
-    height: 24vh;
+    height: 25vh;
     padding: 5vh 2vw 3.5vh 2vw;
     position: relative;
 }
@@ -181,7 +180,7 @@
     color: #ffffff;
     cursor: pointer;
     position: absolute;
-    right:0;
+    right:17px;
     bottom: 14px;
     width: 61px;
     height: 30px;

@@ -96,53 +96,65 @@ li img {
 /*科学型界面开始*/
 .science-main {
     display: none;
-    width: 404px;
+    width: 392px;
+    position: relative;
 }
 .sci-result {
     height: 98px;
     text-align: right;
+    background: #ebebeb;
 }
 #sci-top-symbol {
-    border-top: 1px #A7A7A7 solid;
+    background-color: #f3f3f3;
     height: 76px;
 }
 #sci-top-symbol li, #sci-num-symbol li {
     line-height: 27px;
-    width: 77px;
+    width: 76px;
+    border-right: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
 }
 #sci-num-symbol {
     height: 145px;
-    background-color: #E6E6E6;
+    background-color: #f3f3f3;
 }
 /*科学型界面结束*/
 
 /*程序员型界面开始*/
 .programmer-main {
     display: none;
-    width: 350px;
+    width: 355px;
+    position: relative;
 }
 .pro-result {
-    height: 220px;
+    height: 132px;
     text-align: right;
+    background: #ebebeb;
 }
 #pro-top-symbol {
-    border-top: 1px #A7A7A7 solid;
-    height: 45px;
+    background-color: #f3f3f3;
+    height: 31px;
 }
 #pro-top-symbol li {
-    line-height: 45px;
+    line-height: 30px;
     width: 58px;
+    border-right: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
 }
 #pro-num-symbol li {
-    line-height: 45px;
+    line-height: 30px;
     width: 70px;
+    border-right: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
 }
 #pro-num-symbol {
-    height: 235px;
-    background-color: #E6E6E6;
+    height: 156px;
+    background-color: #f3f3f3;
 }
 /*四个进制*/
 #pro-scales {
+    display: flex;
+    justify-content: space-around;
     margin-left: 20px;
 }
 #pro-scales div {
