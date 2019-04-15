@@ -34,4 +34,19 @@ $(function(){
         }
     };
     zTreeObj = $.fn.zTree.init($("#treeDemo"), asyncSetting);
+    $.ajax({
+        url:'../data/formulaData.json',
+        type:'post',
+        data:'',
+        dataType:'json',
+        success:function(res){
+            layui.use('laytpl',function(){
+                var laytpl = layui.laytpl
+                var getTpl = $('#searchListTpl').html()
+                laytpl(getTpl).render(res, function(html){
+                    $('.search-list').html(html);
+                });
+            })
+        }
+    })
 })

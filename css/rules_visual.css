@@ -1,25 +1,84 @@
 .right-content{
 
 }
+.right-content .content-tools{
+    float: right;
+    width: 268px;
+    height: 100%;
+    margin: 20px 8px 6px 0;
+}
+.select-search{
+    float: left;
+    width: 100%;
+}
+.tools-item{
+     float: left;
+     width: 75px;
+     height: 100%;
+     line-height: 42px;
+     border-right: 1px solid #e5e5e5;
+     text-align: center;
+     box-sizing: border-box;
+ }
+
+.pannel-item:last-child{
+    border-right: none;
+}
+
 .collapse-content{
+    width: calc(100% - 276px);
     height: calc(100% - 80px);
     padding-bottom: 80px;
+    float: left;
 }
 .node-edit-tools{
     width: 225px;
     height: 42px;
     margin: 7px auto 0;
 }
-.tools-item{
-    float: left;
-    width: 75px;
-    height: 100%;
-    line-height: 42px;
-    border-right: 1px solid #e5e5e5;
-    text-align: center;
-    box-sizing: border-box;
+.search{
+    width: calc(100% - 117px);
 }
-
-.pannel-item:last-child{
-    border-right: none;
+.search-list{
+    margin-top: 6px;
+    float: right;
+    width: 244px;
+    height: calc(100% - 112px);
+    background-color: #fff;
+    padding: 14px 12px;
+    border-radius: 5px;
+}
+.search-title{
+    font:22px SoureceHanSansCN-Medium;
+    color: #b5b5bb;
+}
+.search-list-ul{
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 3px;
+}
+.search-list-ul li{
+    margin-top: 10px;
+}
+.search-list-number{
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border: 1px solid #379ff7;
+    background: linear-gradient(to right,#72b9f1, #52e6e8);
+    font:700 12px/19px SoureceHanSansCN-Medium;
+    color: white;
+    margin-right: 11px;
+    text-align: center;
+    border-radius: 50%;
+    vertical-align: text-bottom;
+}
+.search-list-item{
+    display: inline-block;
+    width: 106px;
+    height: 30px;
+    font:22px/26px SoureceHanSansCN-Medium;
+    color: #545456;
+    background: url("../img/3.png") center no-repeat;
+    text-align: center;
 }
