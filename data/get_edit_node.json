@@ -1,0 +1,17 @@
+{
+  "status": true,
+  "data": {
+    "BlockId": 1,
+    "BlockTitle": "流程图表题二",
+    "BlockItems": [
+      {
+        "id": 1,
+        "name": "属性一"
+      },
+      {
+        "id": 2,
+        "name": "属性二"
+      }
+    ]
+  }
+}

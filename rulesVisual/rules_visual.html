@@ -5,7 +5,7 @@
         <meta name="viewport"
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>BIAD-要素库管理</title>
+        <title>BIAD-规则可视化</title>
         <link rel="stylesheet" href="../plugin/layui-v2.4.5/layui/css/layui.css">
         <link rel="stylesheet" href="../plugin/zTree_v3/css/zTreeStyle/zTreeStyle_3_4.css">
         <link rel="stylesheet" href="../plugin/flowchart/css/style.css">
@@ -19,7 +19,7 @@
         </ul>
         <div class="layui-layout layui-layout-admin">
             <div class="layui-header">
-                <h2 class="layui-logo top-title"><strong>BIAD-</strong>要素管理</h2>
+                <h2 class="layui-logo top-title"><strong>BIAD</strong></h2>
             </div>
             <div class="layui-side left-nav">
                 <ul class="layui-nav layui-nav-tree" lay-filter="nav_ul">
@@ -97,23 +97,24 @@
         <div class="right-content">
             <div class="content-tools layui-clear">
                 <form class="layui-form select-search" action="">
-                    <select lay-ignore class="selector" name="type" id="">
-                        <option value="zh">综合</option>
+                    <select lay-ignore class="selector" name="class" id="" lay-filter="searchFuncClass">
+
                     </select>
-                    <input class="search" type="search" placeholder="搜索要素">
-                    <span class="layui-icon layui-icon-search"></span>
+                    <input type="search" placeholder="搜索要素" name="text" lay-verify="required" class="layui-input search">
+                    <span class="search-icon" lay-submit lay-filter="searchFunAct"></span>
                 </form>
-                <span class="layui-btn add-item layui-hide"></span>
-                <span class="attachment"></span>
                 <div class="search-list"></div>
+                <div class="thumbnail">缩略图</div>
             </div>
             <div class="collapse-content">
-                <ul class="node-edit-tools">
+                <ul class="node-edit-tools layui-hide">
                     <li class="tools-item msg">信息</li>
                     <li class="tools-item remind">提醒</li>
                     <li class="tools-item setting">设置</li>
                 </ul>
                 <div class="chart-design droppable" id="chart-container"></div>
+                <div class="function-param layui-hide"></div>
+                <div class="function-category layui-hide"></div>
             </div>
         </div>
 
@@ -133,6 +134,20 @@
         <button id="dragTree">拖动</button>
 
         <!--自定义模板-s-->
+        <script id="searchCalssTpl" type="text/html">
+            <option value="zh">综合</option>
+            {{# layui.each(d.data,function(index,ele){ }}
+                {{# if(ele.isParent){ }}
+                    <optgroup label="{{ ele.name }}">
+                        {{# layui.each(ele.children,function(i,e){ }}
+                        <option value="{{ e.id }}">{{ e.name }}</option>
+                        {{# }) }}
+                    </optgroup>
+                {{# }else{ }}
+                    <option value="{{ ele.id }}">{{ ele.name }}</option>
+                {{# } }}
+            {{# }) }}
+        </script>
         <script id="searchListTpl" type="text/html">
             <h3 class="search-title">函数</h3>
             <ul class="search-list-ul">
@@ -146,14 +161,13 @@
         </script>
         <!--自定义模板-e-->
         <script src="../plugin/jquery-1.11.3.js"></script>
+        <script src="../plugin/flowchart/js/jquery-ui.js"></script>
         <script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
+        <script src="../plugin/flowchart/js/jquery.jsplumb.js"></script>
+        <script src="../plugin/flowchart/js/jsplumb_self.js"></script>
         <script src="../plugin/zTree_v3/js/jquery.ztree.all.js"></script>
-        <script src="../plugin/flowchart/js/jsplumb.js"></script>
         <script src="../js/user_info.js"></script>
         <script src="../js/public.js"></script>
         <script src="../js/rules_visual.js"></script>
-        <script src="../js/node_edit.js"></script>
-        <script src="../plugin/flowchart/js/jsplumb_self.js"></script>
     </body>
-
 </html>

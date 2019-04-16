@@ -42,14 +42,23 @@
 }
 
 .search {
-    width: calc(100% - 117px);
+    width: calc(100% - 120px);
 }
 
+.search-icon{
+    width: 19px;
+    height: 20px;
+    background: url("../img/search_icon.png") center no-repeat;
+    cursor: pointer;
+    float: right;
+    margin-top: 6px;
+    margin-right: 10px;
+}
 .search-list {
     margin-top: 6px;
     float: right;
     width: 244px;
-    height: calc(100% - 112px);
+    height: calc(100% - 283px);
     background-color: #fff;
     padding: 14px 12px;
     border-radius: 5px;
@@ -74,41 +83,68 @@
     display: inline-block;
     width: 19px;
     height: 19px;
-    border: 1px solid #379ff7;
-    background: linear-gradient(to right, #72b9f1, #52e6e8);
+    background: url("../img/node_nor.png") center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
     font: 700 12px/19px SoureceHanSansCN-Medium;
     color: white;
     margin-right: 11px;
     text-align: center;
-    border-radius: 50%;
     vertical-align: text-bottom;
 }
 
 .search-list-item {
     display: inline-block;
-    width: 106px;
-    height: 30px;
-    font: 22px/26px SoureceHanSansCN-Medium;
+    width: 132px;
+    height: 25px;
+    font: 22px/22px SoureceHanSansCN-Medium;
     color: #545456;
-    background: url("../img/3.png") center no-repeat;
+    background: url("../img/mod_02.png") center no-repeat;
     text-align: center;
 }
+
+.thumbnail{
+    float: right;
+    width: 253px;
+    height: 162px;
+    margin: 6px 0 6px;
+    padding: 12px 7px 10px 8px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
 .collapse-content{
     position: relative;
 }
 
 .collapse-content .chart-design{
     left: 0;
+    top: 20px;
     width:calc(100% - 10px);
     height: calc(100% - 76px);
     background-color: transparent;
 }
 
-
-#dragTree{
-    position: fixed;
-    top: 56px;
-    left: 325px;
-    width: 50px;
-    height: 30px;
+.function-param,.function-category{
+    position: absolute;
+    top: 60px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+.function-param{
+    width: 200px;
+    height: 150px;
+    right: 255px;
+    padding: 12px 14px 10px 12px;
+    background: url("../img/pop_bg02.png") center -3px no-repeat;
+}
+.function-category{
+    width: 154px;
+    height: 305px;
+    right: 38px;
+    padding: 10px 0px 6px 12px;
+    background: url("../img/pop_bg01.png") center top no-repeat;
 }

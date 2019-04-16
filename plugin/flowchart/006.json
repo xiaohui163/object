@@ -1,0 +1,76 @@
+{
+  "connects": [
+    {
+      "ConnectionId": "con_28",
+      "PageSourceId": "49578360-b079-a244-57ff-78aaacaa2205item1",
+      "PageTargetId": "4a40baf7-6459-8057-8af0-0f4b1721b7e1item1",
+      "Connectiontext": null,
+      "Firstpoint": "Right",
+      "Secondpoint": "Left"
+    },
+    {
+      "ConnectionId": "con_36",
+      "PageSourceId": "49578360-b079-a244-57ff-78aaacaa2205item2",
+      "PageTargetId": "c08ef11d-d8d5-adf7-fdbf-dbf06403af9bitem1",
+      "Connectiontext": null,
+      "Firstpoint": "Right",
+      "Secondpoint": "Right"
+    }
+  ],
+  "block": [
+    {
+      "BlockId": "49578360-b079-a244-57ff-78aaacaa2205",
+      "BlockX": 306,
+      "BlockY": 112,
+      "BlockWidth": 120,
+      "BlockHeight": 60,
+      "BlockTitle": "流程图表题二",
+      "BlockItems": [
+        {
+          "id": "49578360-b079-a244-57ff-78aaacaa2205item1",
+          "name": "属性一"
+        },
+        {
+          "id": "49578360-b079-a244-57ff-78aaacaa2205item2",
+          "name": "属性二"
+        }
+      ]
+    },
+    {
+      "BlockId": "c08ef11d-d8d5-adf7-fdbf-dbf06403af9b",
+      "BlockX": 314,
+      "BlockY": 306,
+      "BlockWidth": 120,
+      "BlockHeight": 60,
+      "BlockTitle": "流程图表题二",
+      "BlockItems": [
+        {
+          "id": "c08ef11d-d8d5-adf7-fdbf-dbf06403af9bitem1",
+          "name": "属性一"
+        },
+        {
+          "id": "c08ef11d-d8d5-adf7-fdbf-dbf06403af9bitem2",
+          "name": "属性二"
+        }
+      ]
+    },
+    {
+      "BlockId": "4a40baf7-6459-8057-8af0-0f4b1721b7e1",
+      "BlockX": 593,
+      "BlockY": 250,
+      "BlockWidth": 120,
+      "BlockHeight": 60,
+      "BlockTitle": "流程图表题一",
+      "BlockItems": [
+        {
+          "id": "4a40baf7-6459-8057-8af0-0f4b1721b7e1item1",
+          "name": "属性一"
+        },
+        {
+          "id": "4a40baf7-6459-8057-8af0-0f4b1721b7e1item2",
+          "name": "属性二"
+        }
+      ]
+    }
+  ]
+}
