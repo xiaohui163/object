@@ -24,13 +24,24 @@ $(function(){
             fontCss: setFontCss,
             selectedMulti: true
         },
-        callback:{
-            beforeClick: function (event, treeId, treeNode) {
-                if(treeNode.lev == 1)return false
+        edit:{
+            drag: {
+                isCopy:true,
+                isMove:true
             },
+            enable:true,
+            showRemoveBtn: false,
+            showRenameBtn: false
+        },
+        callback:{
+            beforeClick: zTreeBeforeClick,
             onClick: function (event, treeId, treeNode) {
                 $(event.target).toggleClass('selected');
-            }
+            },
+            beforeDrag:zTreeBeforeDrag,
+            onDrag:zTreeOnDrag,
+            beforeDrop: zTreeBeforeDrop,
+            onDrop:zTreeOnDrop
         }
     };
     zTreeObj = $.fn.zTree.init($("#treeDemo"), asyncSetting);
@@ -49,4 +60,28 @@ $(function(){
             })
         }
     })
+
+
 })
+
+function zTreeBeforeDrag(treeId, treeNodes){
+    if(treeNodes[0].lev == 1){
+        return false
+    }else{
+        return true
+    }
+}
+function zTreeOnDrag(event,treeId,treeNodes) {
+
+}
+function zTreeBeforeDrop(treeId, treeNodes, targetNode, moveType) {
+    console.log(targetNode)
+}
+function zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType){
+    console.log(targetNode)
+    if(!targetNode){
+        //console.log("x:"+event.clientX,"Y:"+event.clientY)
+        console.log(event)
+        if($(event.target).is($('.')))
+    }
+}

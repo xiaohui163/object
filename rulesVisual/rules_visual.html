@@ -8,6 +8,7 @@
         <title>BIAD-要素库管理</title>
         <link rel="stylesheet" href="../plugin/layui-v2.4.5/layui/css/layui.css">
         <link rel="stylesheet" href="../plugin/zTree_v3/css/zTreeStyle/zTreeStyle_3_4.css">
+        <link rel="stylesheet" href="../plugin/flowchart/css/style.css">
         <link rel="stylesheet" href="../css/header-side.css">
         <link rel="stylesheet" href="../css/rules_visual.css">
     </head>
@@ -112,6 +113,7 @@
                     <li class="tools-item remind">提醒</li>
                     <li class="tools-item setting">设置</li>
                 </ul>
+                <div class="chart-design droppable" id="chart-container"></div>
             </div>
         </div>
 
@@ -128,6 +130,7 @@
             </form>
         </div>
         <!--自定义内容-e-->
+        <button id="dragTree">拖动</button>
 
         <!--自定义模板-s-->
         <script id="searchListTpl" type="text/html">
@@ -142,12 +145,15 @@
             </ul>
         </script>
         <!--自定义模板-e-->
-        <script src="../plugin/jquery-3.3.1.js"></script>
+        <script src="../plugin/jquery-1.11.3.js"></script>
         <script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
         <script src="../plugin/zTree_v3/js/jquery.ztree.all.js"></script>
+        <script src="../plugin/flowchart/js/jsplumb.js"></script>
         <script src="../js/user_info.js"></script>
         <script src="../js/public.js"></script>
         <script src="../js/rules_visual.js"></script>
+        <script src="../js/node_edit.js"></script>
+        <script src="../plugin/flowchart/js/jsplumb_self.js"></script>
     </body>
 
 </html>

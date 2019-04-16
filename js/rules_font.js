@@ -101,7 +101,7 @@ function callbacka(ele, tablee) {
             })
         } else if ($(ele).hasClass('btn-del')) {
             delFunc.ele = ele
-            ('是否删除当前行?', delFunc)
+            delConfirm('是否删除当前行?', delFunc)
         }
     })
 
@@ -211,6 +211,6 @@ layui.use(['form', 'layer', 'upload'], function () {
             })
         }
 
-        return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        return false;
     });
 })
