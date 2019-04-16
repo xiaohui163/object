@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BIAD-要素库管理</title>
+    <link rel="stylesheet" href="../plugin/layui-v2.4.5/layui/css/layui.css">
+    <link rel="stylesheet" href="../plugin/zTree_v3/css/zTreeStyle/zTreeStyle_3_4.css">
+    <link rel="stylesheet" href="../css/header-side.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="layui-layout-body">
+<!--右下角功能按钮-->
+<ul class="layui-fixbar">
+    <li class="layui-icon layui-fixbar-top" lay-type="top" style="display: list-item;"></li>
+    <li class="layui-icon more" lay-type="top" style="display: list-item;">&#xe65f;</li>
+</ul>
+<!--框架主要内容-->
+<div class="layui-layout layui-layout-admin">
+<!--    头部标题-->
+    <div class="layui-header">
+        <h2 class="layui-logo top-title"><strong>BIAD-</strong>要素管理</h2>
+    </div>
+<!--    左侧导航栏-->
+    <div class="layui-side left-nav">
+        <ul class="layui-nav layui-nav-tree" lay-filter="nav_ul">
+            <li class="layui-nav-item dictionary">
+                <a class="nav-item" href="javascript:;">
+                    <i class="nav-icon"></i>
+                    <span class="nav-text">字典管理</span>
+                </a>
+                <span class="nav-left-border"></span>
+            </li>
+            <li class="layui-nav-item element layui-this">
+                <a class="nav-item" href="javascript:;">
+                    <i class="nav-icon"></i>
+                    <span class="nav-text">要素库</span>
+                </a>
+                <span class="nav-left-border"></span>
+            </li>
+            <li class="layui-nav-item rules">
+                <a class="nav-item" href="javascript:;">
+                    <i class="nav-icon"></i>
+                    <span class="nav-text">规则库</span>
+                </a>
+                <span class="more-right"></span>
+                <span class="nav-left-border"></span>
+                <dl class="sec-nav">
+                    <dd class="indicators">
+                        <a class="nav-item" href="javascript:;">
+                            <i class="nav-icon"></i>
+                            <span class="nav-text">指标库</span>
+                        </a>
+                        <span class="nav-left-border"></span>
+                    </dd>
+                    <dd class="function">
+                        <a class="nav-item" href="javascript:;">
+                            <i class="nav-icon"></i>
+                            <span class="nav-text">函数库</span>
+                        </a>
+                        <span class="nav-left-border"></span>
+                    </dd>
+                    <dd class="font-end">
+                        <a class="nav-item" href="javascript:;">
+                            <i class="nav-icon"></i>
+                            <span class="nav-text">规则库·前台</span>
+                        </a>
+                        <span class="nav-left-border"></span>
+                    </dd>
+                    <dd class="rules-relation">
+                        <a class="nav-item" href="javascript:;">
+                            <i class="nav-icon"></i>
+                            <span class="nav-text">规则关系库</span>
+                        </a>
+                        <span class="nav-left-border"></span>
+                    </dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item rules-visual">
+                <a class="nav-item" href="javascript:;">
+                    <i class="nav-icon"></i>
+                    <span class="nav-text">规则可视化</span>
+                </a>
+                <span class="nav-left-border"></span>
+            </li>
+        </ul>
+    </div>
+<!--    树形文件结构-->
+    <div class="tree">
+        <h3 class="tree-title">
+            <p class="title-text">要素库分类</p>
+            <span class="layui-badge-dot"></span>
+        </h3>
+        <div id="treeDemo" class="tree-content ztree"></div>
+    </div>
+</div>
+<!--右侧具体内容-->
+<div class="right-content">
+    <div class="content-tools layui-clear">
+        <form class="layui-form select-search" action="">
+            <input class="search" type="search" placeholder="搜索要素">
+            <span class="layui-icon layui-icon-search"></span>
+        </form>
+    </div>
+    <div class="func-describe">
+        <div class="describe-left">
+            <p><span style="display: inline-block;width: 14px;height: 14px;background-image: url('../img/3yuan.png');vertical-align: middle;margin-right: 0.5vw"></span>
+                <span style="display: inline-block;vertical-align: middle">函数描述</span></p>
+            <div class="imgs">MAX</div>
+            <div class="derline">
+                <span class="ening">描述：</span><span style="color: #aeaeae;">计算所选参数数值的和</span></div>
+            <div><span class="ening">规则：</span><span style="color: #aeaeae;">Number1：1-255个带求和的数值。参很多客户看。逻辑值和文本有效。</span></div>
+            <div><span class="ening">示例：</span><span style="color: #aeaeae;">Number1：1-255个带求和的数值。和点卡很多客户看。逻辑值和文本有效。</span></div>
+        </div>
+        <div class="describe-right">
+            <div class="title">
+                <span>常用函数：</span>
+                <span class="btn"><img src="../img/3shezhi.png" alt=""><img src="../img/3anniu.png" alt=""></span>
+            </div>
+            <div class="common-func">
+                <ul>
+                    <li>SUM</li>
+                    <li>IF</li>
+                    <li>s</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="calculator">
+        <div class="nav">函数输入</div>
+        <div class="calculator-box">
+            <div class="calculator-right">
+                <ul>
+                    <li>aX2 + bX = C<div class="edit"><span onclick="javascript:;"><img src="../img/delete.png" alt=""></span><span onclick="javascript:;"><img src="../img/edit.png" alt=""></span></div></li>
+                    <li>aX2 + bX = C<div class="edit"><span onclick="javascript:;"><img src="../img/delete.png" alt=""></span><span onclick="javascript:;"><img src="../img/edit.png" alt=""></span></div></li>
+                    <li>aX2 + bX = C<div class="edit"><span onclick="javascript:;"><img src="../img/delete.png" alt=""></span><span onclick="javascript:;"><img src="../img/edit.png" alt=""></span></div></li>
+                    <li>aX2 + bX = C<div class="edit"><span onclick="javascript:;"><img src="../img/delete.png" alt=""></span><span onclick="javascript:;"><img src="../img/edit.png" alt=""></span></div></li>
+                </ul>
+                <div class="keep" onclick="javascript:;">保存</div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!--自定义模板-->
+<script id="describeContent" type="text/html">
+    {{# layui.each(d.data,function(idx,item){ }}
+        <div data-id={{item.id}}>
+            <p>
+                <span style="display: inline-block;width: 14px;height: 14px;background-image: url('../img/3yuan.png');vertical-align: middle;margin-right: 0.5vw"></span>
+                <span style="display: inline-block;vertical-align: middle">函数描述</span></p>
+            <div class="imgs">MAX</div>
+            <div class="derline">
+                <span class="ening">描述：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
+            <div><span class="ening">规则：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
+            <div><span class="ening">示例：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
+        </div>
+    {{# }) }}
+</script>
+<!--自定义模板-->
+
+<!--自定义模板-->
+<script id="commonFunction" type="text/html">
+    <ul>
+        {{# layui.each(d.data,function(idx,item){ }}
+            <li>{{ item.name }}</li>
+        {{# }) }}
+    </ul>
+</script>
+<!--自定义模板-->
+<script src="../plugin/jquery-3.3.1.js"></script>
+<script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
+<script src="../plugin/zTree_v3/js/jquery.ztree.all.js"></script>
+<script src="../js/user_info.js"></script>
+<script src="../js/public.js"></script>
+<script src="index.js"></script>
+</body>
+</html>
