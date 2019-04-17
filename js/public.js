@@ -511,7 +511,7 @@ function scrollTable(height) {
                 "scrollY": height,
                 "ordering": true,
                 "dom": "ft<'row-fluid'<'fl'i> <'fl'l><'fr'p>>",
-                autoWidth: false, //禁用自动调整列宽
+                autoWidth: true, //禁用自动调整列宽
                 processing: false, //隐藏加载提示,自行处理
                 serverSide: false, //启用服务器端分页
                 searching: false, //禁用原生搜索
