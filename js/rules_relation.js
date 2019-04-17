@@ -1,10 +1,4 @@
-$(function(){
-    var height = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height();
-    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollY = height;
-    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollCollapse = true;
-    CONSTANT.DATA_TABLES.DEFAULT_OPTION.fixedHeader = true;
-
-    let colmuns = [
+let colmuns = [
         {
             data: "name",
             render: function (data, type, row) {
@@ -23,12 +17,12 @@ $(function(){
                 return '<div class="rules-operation" data-id="' + row.id + '"><span class="layui-btn btn-edit">编辑</span><span class="layui-btn btn-del">删除</span>'
             }
         }
-    ]
-    let table_url = '../data/rules_relation.json', table_a = null;
+    ],
+    scrollHeight = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height(),
+    table_url = '../data/rules_relation.json';
+renderTable("#showRulesLib",table_url,colmuns,'',scrollHeight)
 
-    tableshow($("#showRulesLib"), colmuns, table_a, table_url, $('.btn-del'), userManage, "undefined");
 
-})
 var fromCount = 0, toCount = 0, rulesCount = 0
 function callbacka(ele, tablee) {
     layui.use(['form','layer'],function() {
@@ -219,7 +213,7 @@ layui.use(['form', 'layer', 'upload'], function () {
         console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
         console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
         console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
-        if($(data.form).parents('.layui-layer-page').hasClass('edit-rules')){//编辑提交
+        if($(data.form).parents('.layui-layer-page').hasClass('edit-relation')){//编辑提交
             $.ajax({
                 url:'#',
                 type:'post',
@@ -228,14 +222,16 @@ layui.use(['form', 'layer', 'upload'], function () {
                 success:function(res){
                     if(res.success){
                         $layer.close($layer.index)
+                        renderTable(table_url,colmuns,'',scrollHeight)
                         $layer.msg('修改成功！')
                     }
                 },
                 error:function(err){
                     console.log(err);
+                    $layer.msg('服务器错误')
                 }
             })
-        }else if($(data.form).parents('.layui-layer-page').hasClass('add-rules')){//添加提交
+        }else if($(data.form).parents('.layui-layer-page').hasClass('add-relation')){//添加提交
             $.ajax({
                 url:'#',
                 type:'post',
@@ -244,11 +240,13 @@ layui.use(['form', 'layer', 'upload'], function () {
                 success:function(res){
                     if(res.success){
                         $layer.close($layer.index)
+                        renderTable(table_url,colmuns,'',scrollHeight)
                         $layer.msg('添加成功！')
                     }
                 },
                 error:function(err){
                     console.log(err);
+                    $layer.msg('服务器错误')
                 }
             })
         }
@@ -331,17 +329,12 @@ layui.use(['form', 'layer', 'upload'], function () {
                 shadeClose: false,
                 resize: false,
                 move: false,
-                area: ['870px', '475px'],
+                area: ['870px', '510px'],
                 tipsMore: true,
                 offset: '200px',
                 success: function (layero, index) {
                     $('.layui-layer-content', layero).attr('data-name', dataName)
-                    var table_a = null;
-                    let height = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height()
-                    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollY = height;
-                    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollCollapse = true;
-                    CONSTANT.DATA_TABLES.DEFAULT_OPTION.fixedHeader = true;
-                    colmuns = [
+                    let colmuns = [
                         {
                             data: "name",
                             render: function (data, type, row) {
@@ -366,7 +359,7 @@ layui.use(['form', 'layer', 'upload'], function () {
                     ]
                     let table_url = '../data/rulesLib.json'
 
-                    tableshow($("#chooseRulesTable"), colmuns, table_a, table_url, $('.btn-del'), userManage, "undefined");
+                    renderTable("#chooseRulesTable",table_url,colmuns);
                 }
             })
         }

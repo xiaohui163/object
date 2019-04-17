@@ -1,10 +1,5 @@
-$(function () {
-    var table_a = null;
-    let height = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height()
-    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollY = height;
-    CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollCollapse = true;
-    CONSTANT.DATA_TABLES.DEFAULT_OPTION.fixedHeader = true;
 
+let table_url = '../data/rulesLib.json',
     colmuns = [
         {
             data: "name",
@@ -32,12 +27,10 @@ $(function () {
                 return '<div class="rules-operation" data-id="' + row.id + '"><span class="layui-btn btn-edit">编辑</span><span class="layui-btn btn-del">删除</span>'
             }
         }
-    ]
-    let table_url = '../data/rulesLib.json'
+    ],
+    scrollHeight = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height();
 
-    tableshow($("#showRulesLib"), colmuns, table_a, table_url, $('.btn-del'), userManage, "undefined");
-})
-
+renderTable("#showRulesLib",table_url,colmuns,'',scrollHeight)
 
 function callbacka(ele, tablee) {
     layui.use(['form', 'layer', 'upload'], function () {
@@ -191,11 +184,14 @@ layui.use(['form', 'layer', 'upload'], function () {
                 dataType: "json",
                 success:function(res){
                     if(res.success){
+                        renderRulesFontTable()
+                        $layer.closeAll('page')
                         $layer.msg('修改成功！')
                     }
                 },
                 error:function(err){
                     console.log(err);
+                    $layer.msg('服务器错误')
                 }
             })
         }else if($(data.form).parents('.layui-layer-page').hasClass('add-rules')){//添加提交
@@ -206,11 +202,14 @@ layui.use(['form', 'layer', 'upload'], function () {
                 dataType: "json",
                 success:function(res){
                     if(res.success){
+                        renderRulesFontTable()
+                        $layer.closeAll('page')
                         $layer.msg('添加成功！')
                     }
                 },
                 error:function(err){
                     console.log(err);
+                    $layer.msg('服务器错误')
                 }
             })
         }

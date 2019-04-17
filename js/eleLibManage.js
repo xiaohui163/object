@@ -4,107 +4,11 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     /*加载树形结构--E*/
     renderTree('.ztree',"../data/eleLibTree.json")
 
-    //改变树形结构后提交后台
-    function changeTreeNode(id,parentTId,name,type,it) {
-        let strArr = ['添加成功！','修改成功！','删除成功'],
-            typeArr = ['add','edit','del'];
-
-        $layer.load();
-
-        $.ajax({
-            url: "#",
-            type: "post",
-            data: {id: id, parentId: parentTId, name: name, type: typeArr[type]},
-            dataType: "json",
-            success: function (rst) {
-                if (rst.status) {
-                    $layer.closeAll('loading');
-                    $layer.msg(msg ? strArr[type] : '修改成功!');
-                    //折叠页清空,树的选中状态复位
-                    $('.collapse-content').html('');
-                    zTreeObj.cancelSelectedNode();
-                    if (it) {
-                        $(it).parents('.colla-item').removeClass('editable');
-                    }
-                }
-            },
-            error: function (err) {
-                $layer.closeAll('loading');
-                $layer.msg('服务器错误！')
-                if (it) {
-                    $(it).focus();
-                }
-            }
-        })
-    }
 
     //var tableData;
 
     /*加载折叠项内容--S*/
-    /*$('.collapse-content').on('click','.colla-title',function(e){
-        e.stopPropagation();
-        if($(this).parents('.colla-item').hasClass('editable')) return;
-        $(this).siblings('span').removeClass('active');
-        if($(this).parents('.colla-item').hasClass('active')){
-            $(this).parents('.colla-item').removeClass('active').removeClass('editable')
-            return
-        }
-        $(this).parents('.colla-item').siblings('.colla-item').removeClass('editable')
-        let it = this, dataId = $(it).parents('.colla-item').attr('data-id');
-        $('.collapse-content .colla-item').removeClass('active');
-        $(it).parents('.colla-item').addClass('active');
 
-        $.ajax({
-            url:'../data/eleLibContent.json',
-            type:'post',
-            data:{
-                id: $(it).parent('.colla-item').attr('data-id')
-            },
-            dataType:'json'
-        }).done(function (res) {
-            tableData = "";
-            window.activeTable = "";
-            //$(it).parents('.colla-item').attr('data-id',res.tableId);
-            /!*let head = [], html = '';
-            for (let i = 0; i < res.cols.length; i++) {
-                // html = `<th lay-data="{field:'${res.cols[i].field}',minWidth:100,align:'center'}">${res.cols[i].title}</th>`;
-                // $(it).parents('.colla-item').find('.colla-content thead tr').append(html);
-                res.cols[i]['align'] = 'center'
-                res.cols[i]['minWidth'] = 100
-                //head[i]['template'] = ''
-            }*!/
-
-            let last = {}, cloneObj = res.data[res.data.length-1];
-
-            for (let key in cloneObj){
-                if(cloneObj.hasOwnProperty(key)){
-                    if(key=="id") continue
-                    last[key] = '+';
-                }
-            }
-            res.data.push(last)
-            tableData = res;
-            window.activeTable = $table.render({
-                elem: $(it).parents('.colla-item').find('table')[0],
-                cols:[res.cols],
-                data: res.data,
-                loading:true,
-                id: "table" + res.tableId,
-                skin: 'row',
-                text:{
-                    none: ""
-                },
-                done:function(){
-                    /!*$table.on('edit', function(obj){
-                        console.log(obj.tr) //得到当前行元素对象
-                        console.log(obj.data) //得到当前行数据
-                        //obj.del(); //删除当前行
-                        //obj.update(fields) //修改当前行数据
-                    })*!/
-                }
-            })
-        })
-    })*/
     //头部名称点击
     $('body').on('click','.colla-title',function(e){
         e.stopPropagation();
@@ -127,7 +31,6 @@ layui.use(['element','form','table','laytpl','layer'], function () {
 
         renderColsDom(dataId,url,selector)
     })
-
 
     /*加载折叠项内容--S*/
 

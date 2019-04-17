@@ -189,6 +189,40 @@ function zTreeOnRename(event, treeId, treeNode, isCancel) {
     alert(treeNode.tId + ", " + treeNode.name);
     changeTreeNode(treeNode.id,treeNode.pId,treeNode.name,1)
 }
+//改变树形结构后提交后台
+function changeTreeNode(id,parentTId,name,type,it) {
+    let strArr = ['添加成功！','修改成功！','删除成功'],
+        typeArr = ['add','edit','del'];
+
+    layui.layer.load();
+
+    $.ajax({
+        url: "#",
+        type: "post",
+        data: {id: id, parentId: parentTId, name: name, type: typeArr[type]},
+        dataType: "json",
+        success: function (rst) {
+            if (rst.status) {
+                layui.layer.closeAll('loading');
+                layui.layer.msg(msg ? strArr[type] : '修改成功!');
+                //折叠页清空,树的选中状态复位
+                $('.collapse-content').html('');
+                zTreeObj.cancelSelectedNode();
+                if (it) {
+                    $(it).parents('.colla-item').removeClass('editable');
+                }
+            }
+        },
+        error: function (err) {
+            layui.layer.closeAll('loading');
+            layui.layer.msg('服务器错误！')
+            if (it) {
+                $(it).focus();
+            }
+        }
+    })
+}
+
 //规则库右侧三角
 $('.more-right').click(function(e){
     e.stopPropagation();
@@ -569,4 +603,39 @@ let delFunc = {
             }
         })
     }
+}
+
+function parseParam(param, key){
+    var paramStr="";
+    if(param instanceof String||param instanceof Number||param instanceof Boolean){
+        paramStr+="&"+key+"="+encodeURIComponent(param);
+    }else{
+        $.each(param,function(i){
+            var k=key==null?i:key+(param instanceof Array?"["+i+"]":"."+i);
+            paramStr+='&'+parseParam(this, k);
+        });
+    }
+    return paramStr.substr(1);
+
+};
+
+
+function renderTable(selector,url,cols,sendParam,scrollHeight){
+    if(scrollHeight){
+        //var height = $('.right-content').height() - $('.dataTables_info').height() - $('.dataTables_scrollHead').height();
+        CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollY = scrollHeight;
+        CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollCollapse = true;
+        CONSTANT.DATA_TABLES.DEFAULT_OPTION.fixedHeader = true;
+    }else{
+        CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollY = null;
+        CONSTANT.DATA_TABLES.DEFAULT_OPTION.scrollCollapse = false;
+        CONSTANT.DATA_TABLES.DEFAULT_OPTION.fixedHeader = null;
+    }
+
+    let table_a = null;
+
+    if(sendParam){
+        table_url += '?' + parseParam(sendParam)
+    }
+    tableshow($(selector), cols, table_a, url, $('.btn-del'), userManage, "undefined");
 }
