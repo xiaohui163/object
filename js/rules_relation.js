@@ -113,6 +113,11 @@ function callbacka(ele, tablee) {
         }else if($(ele).hasClass('btn-del')){
             //删除当前行
             delFunc.ele = ele
+            delFunc.url = '#'
+            delFunc.param = {
+                id:$(ele).attr('data-id')
+            }
+
             delConfirm('是否删除当前行？',delFunc)
         }
     })
