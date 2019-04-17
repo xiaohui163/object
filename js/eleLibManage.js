@@ -12,6 +12,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     //头部名称点击
     $('body').on('click','.colla-title',function(e){
         e.stopPropagation();
+        if($('.input-name',this).hasClass('active')) return
         let it = this, p = $(it).parents('.colla-item'), gp = $(p).parent();
         if($(p).hasClass('active')){
             $(p).removeClass('active').removeClass('editable')
@@ -50,6 +51,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
             }
         }else{
             $(this).siblings('.colla-title').click();
+            $(pEle).find('.input-name').addClass('active');
             $(this).addClass('active').siblings('.layui-btn').removeClass('active');
             $(pEle).addClass('editable').siblings('.colla-item').removeClass('editable');
         }
@@ -66,10 +68,12 @@ layui.use(['element','form','table','laytpl','layer'], function () {
             //obj.update(fields) //修改当前行数据
         })*/
     });
-    $(".right-content .collapse-content").on("blur",'.input-name',function(){
+
+    $(".right-content .collapse-content").on("blur",'.input-name',function(e){
+        e.stopPropagation();
         let text = $(this).val().trim();
-        let pId = $(this).parents('.collapse-content').attr('data-id'), it = this
-        $(this).siblings('.title-text').html(text);
+        let pId = $(this).parents('.collapse-content').attr('data-id'), it = this;
+        $(it).siblings('.title-text').html(text);
         changeTreeNode("", pId, text,0, it)
     })
 
@@ -208,6 +212,11 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     /*头部+号添加新的*/
     $('.content-tools .add-item').click(function(e){
         e.stopPropagation();
+        if($('.collapse-content .colla-item.active').length>0){
+            $('.collapse-content .colla-item.active .colla-edit').click();
+            return $layer.msg('正在自动完成已有项的修改，请稍后再次添加！')
+        }
+
         if($('.collapse-content').children().length == 0) return $layer.msg('请先选择父级项!');
         let item =  $(this).parents('.right-content').find('.colla-item')
         var newItem = {
@@ -221,8 +230,9 @@ layui.use(['element','form','table','laytpl','layer'], function () {
         }
         let getTpl = $('#collaItems').html();
         $tpl(getTpl).render(newItem,function(html){
-            $('.collapse-content').append(html).find('.input-name').focus();
+            $('.collapse-content').append(html).find('.input-name').addClass('active').focus();
         })
+
 
     })
 

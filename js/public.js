@@ -108,6 +108,7 @@ function zTreeBeforeClick (treeId, treeNode, clickFlag){
     //return (treeNode.lev != 1) && ()
 }
 function zTreeOnClick(event, treeId, treeNode) {
+    event.stopPropagation();
     $('.ztree .node_name').removeClass('selected')
     $(event.target).addClass('selected');
     zTreeObj.selectNode(treeNode,false);
@@ -147,17 +148,20 @@ function beforeRemove(treeId, treeNode) {
     zTree.selectNode(treeNode);
     return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
 }
-function beforeRename(treeId, treeNode, newName) {
-    //let selectedNode = zTreeObj.getSelectedNodes()
-    if (newName.length == 0) {
-        setTimeout(function() {
-            var zTree = $.fn.zTree.getZTreeObj(treeId);
-            zTree.cancelEditName();
-            alert("节点名称不能为空.");
-        }, 0);
-        return false;
+var nameChangeFlag = false;
+function beforeRename(treeId, treeNode, newName,isCancel) {
+    nameChangeFlag = false
+    let reg = /^[a-zA-Z0-9_\u0391-\uFFE5]{2,}$/;
+    var zTree = $.fn.zTree.getZTreeObj(treeId);
+
+    if (!reg.test(newName)) {
+        alert("节点名称输入不正确！");
+        zTree.cancelEditName();
+    }else{
+        if(isCancel != true) nameChangeFlag = true
+        return true
     }
-    return true;
+
 }
 var newCount = 0;
 /*function addHoverDom(treeId, treeNode) {
@@ -186,10 +190,15 @@ function zTreeOnRemove(event, treeId, treeNode) {
 }
 function zTreeOnRename(event, treeId, treeNode, isCancel) {
     event.stopPropagation();
-    alert(treeNode.tId + ", " + treeNode.name);
-    changeTreeNode(treeNode.id,treeNode.pId,treeNode.name,1)
+    if(nameChangeFlag == true){
+        changeTreeNode(treeNode.id,treeNode.pId,treeNode.name,1)
+        nameChangeFlag = false
+    }
+
 }
+
 //改变树形结构后提交后台
+
 function changeTreeNode(id,parentTId,name,type,it) {
     let strArr = ['添加成功！','修改成功！','删除成功'],
         typeArr = ['add','edit','del'];
@@ -210,6 +219,7 @@ function changeTreeNode(id,parentTId,name,type,it) {
                 zTreeObj.cancelSelectedNode();
                 if (it) {
                     $(it).parents('.colla-item').removeClass('editable');
+                    $(it).removeClass('active')
                 }
             }
         },
