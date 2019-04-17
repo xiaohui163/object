@@ -99,10 +99,10 @@
 <!--右侧具体内容-->
 <div class="right-content">
     <div class="content-tools layui-clear">
-        <form class="layui-form select-search" action="">
+        <div class="layui-form select-search">
             <input class="search" type="search" placeholder="搜索要素">
-            <span class="layui-icon layui-icon-search"></span>
-        </form>
+            <span class="layui-icon layui-icon-search" id="searchCon"></span>
+        </div>
     </div>
     <div class="func-describe">
         <div class="describe-left">
@@ -149,13 +149,13 @@
 <!--自定义模板-->
 <script id="describeContent" type="text/html">
     {{# layui.each(d.data,function(idx,item){ }}
-        <div data-id={{item.id}}>
+        <div>
             <p>
                 <span style="display: inline-block;width: 14px;height: 14px;background-image: url('../img/3yuan.png');vertical-align: middle;margin-right: 0.5vw"></span>
                 <span style="display: inline-block;vertical-align: middle">函数描述</span></p>
             <div class="imgs">MAX</div>
             <div class="derline">
-                <span class="ening">描述：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
+                <span class="ening">描述：</span><span style="color: #aeaeae;">{{ item.id }}</span></div>
             <div><span class="ening">规则：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
             <div><span class="ening">示例：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
         </div>
@@ -172,7 +172,7 @@
     </ul>
 </script>
 <!--自定义模板-->
-<script src="../plugin/jquery-3.3.1.js"></script>
+<script src="../plugin/jquery-1.11.3.js"></script>
 <script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
 <script src="../plugin/zTree_v3/js/jquery.ztree.all.js"></script>
 <script src="../js/user_info.js"></script>

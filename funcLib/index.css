@@ -75,11 +75,14 @@
     padding: 2vh 1.5vw 2vh 0;
 }
 .describe-right .common-func ul{
-    width: 20.2vw;
+    width: 22vw;
+    height: 66vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .describe-right .common-func ul li{
     clear: both;
-    width: 100%;
+    width: 99%;
     font-size: 1vw;
     color: rgba(96,96,96,0.7);
     text-align: left;

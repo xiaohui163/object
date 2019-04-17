@@ -7,7 +7,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
             key:{
                 title: "name"
             },
-            autoParam:["id","name"],
+            autoParam:["id","name","lev"],
             dataFilter: filter,
             enable: true,
             url: "../data/eleLibTree.json",
@@ -32,23 +32,21 @@ layui.use(['element','form','table','laytpl','layer'], function () {
                 if(treeNode.lev == 1)return false
             },
             onClick: function (event, treeId, treeNode) {
-                $('.ztree .node_name').removeClass('selected')
+                $('.ztree .node_name').removeClass('selected');
                 $(event.target).addClass('selected');
                 zTreeObj.selectNode(treeNode,false);
                 $('.collapse-content .colla-item').removeClass('active');
-                $.ajax({
-                    url:'../data/eleLibColla.json',
-                    data:{
-                        id: treeNode.id
-                    },
-                    type:'post',
-                    dataType: 'json'
-                }).done(function(res){
-                    if(res.status){
-                        describeGain(treeNode.id)
-                        functionGain(treeNode.id)
-                    }
-                })
+
+                let data = {
+                    data:[treeNode]
+                }
+                if(treeNode.lev !== 1){
+                    var getTpl = $('#describeContent').html();
+                    $tpl(getTpl).render(data, function(html){
+                        $('.describe-left').html(html)
+                    })
+                }
+
             }
         }
     };
@@ -89,25 +87,32 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     }
 
     // 获取函数描述
-    function describeGain(pId){
+    function serchText(){
+        let name = $(".search").val();
         $.ajax({
             url:'../data/selectClass.json',
-            data:{"pId":pId},
+            data:{ name: name },
             type:'post',
             dataType:'json',
             success:function(result){
-                if(result.status){
-
-                    var getTpl = $('#describeContent').html();
-                    $tpl(getTpl).render(result,function(html){
-                        $('.describe-left').html(html)
-                    })
-                }
+                var getTpl = $('#describeContent').html();
+                $tpl(getTpl).render(result,function(html){
+                    $('.describe-left').html(html)
+                })
             },error:function(err){
                 console.log(err)
             }
         })
     }
+    $("#searchCon").click(function () {
+        serchText();
+    });
+    $('.search').bind('keyup', function(event) {
+        if (event.keyCode == "13") {
+            //回车执行查询
+            serchText()
+        }
+    });
 
     // 获取常用函数数据
     function functionGain(pId){
