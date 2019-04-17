@@ -101,6 +101,10 @@ function callbacka(ele, tablee) {
             })
         } else if ($(ele).hasClass('btn-del')) {
             delFunc.ele = ele
+            delFunc.url = '#'
+            delFunc.param = {
+                id:$(ele).attr('data-id')
+            }
             delConfirm('是否删除当前行?', delFunc)
         }
     })

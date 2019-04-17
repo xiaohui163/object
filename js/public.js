@@ -548,12 +548,13 @@ layui.use('form',function () {
 //表格删除tr弹窗回调
 let delFunc = {
     ele: "",
+    url:"",
+    param:"",
     act:function () {
         let ele = this.ele
-        let id = $(ele).parent('').attr('data-id')
         $.ajax({
-            url: "#",
-            data: "id=" + id,
+            url: this.url,
+            data: this.param,
             type: 'post',
             dataType: 'json',
             success: function (res) {
