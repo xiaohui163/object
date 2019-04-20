@@ -1,30 +1,15 @@
-// 标识当前点击的流程图框,默认为none
-sessionStorage['currentChartSelected'] = 'none';
-
-
-//栈,记录用户操作的先后顺序,用来进行撤销操作,数据结构为JSON,其中的copy用来复制部件
-//是个二维栈,包括新增/删除/粘贴操作
-var chartOperationStack = new Array;
-chartOperationStack['add'] = [];
-chartOperationStack['delete'] = [];
-chartOperationStack['paste'] = [];
-chartOperationStack['copy'] = [];
-
-// 记录用户具体操作,有copy,add,delete,paste
-var chartRareOperationStack = new Array;
 var PJP = {};
 
 PJP.JsPlumb = function () {
 
     var _this = this;
-    this.list = jsPlumb.getAllConnections(); // 获取所有的连接
 
     // 根蒂根基连接线样式
     this.connectorPaintStyle = {
         lineWidth: 2,
-        strokeStyle: "rgb(0,32,80)",
+        strokeStyle: "rgb(0,32,80)", // 连接线样式
         joinstyle: "round",
-        outlineColor: "rgb(251,251,251)",
+        // outlineColor: "rgb(251,251,251)", // 拉动连接线外围样式
         outlineWidth: 2
     };
     // 鼠标悬浮在连接线上的样式
@@ -32,11 +17,11 @@ PJP.JsPlumb = function () {
         lineWidth: 2,
         strokeStyle: "#216477",
         outlineWidth: 0,
-        outlineColor: "rgb(251,251,251)"
+        // outlineColor: "rgb(251,251,251)" // 连接线外围样式
     };
     this.hollowCircle = {
-        endpoint: ["Dot", {radius: 4}],  //端点的外形
-        connectorStyle: this.connectorPaintStyle,//连接线的色彩,大小样式
+        endpoint: ["Image", {src: "../img/spot_nor.png"}],  //端点的外形
+        connectorStyle: this.connectorPaintStyle, //连接线的色彩,大小样式
         connectorHoverStyle: this.connectorHoverStyle,
         paintStyle: {
             strokeStyle: "rgb(178,178,178)",
@@ -62,6 +47,9 @@ PJP.JsPlumb = function () {
         }]]
     };
 
+    // 保存当前添加的节点
+    this.currentBlock = [];
+
     // 保存数据等一些基本操作
     $('.fl-btn').click(function (event) {
         // 取被点击按钮的ID
@@ -85,6 +73,7 @@ PJP.JsPlumb = function () {
 
     // 添加对连线的处理
     jsPlumb.bind("dblclick", function (conn, originalEvent) {
+        console.log(".....................")
         $(".fuchuang").css({"display": "block"});
         var aaa = conn.sourceId;
         var bbb = conn.targetId;
@@ -129,6 +118,12 @@ PJP.JsPlumb = function () {
             $(".fuchuang").css({"display": "none"});
         })
     });
+    jsPlumb.bind('connection', function (info, originalEvent) {
+        _this.connection({
+            sourceId: info.sourceId,
+            targetId: info.targetId
+        });
+    });
 
 
     /************************* 加载图形数据 ************************************/
@@ -142,127 +137,20 @@ PJP.JsPlumb = function () {
     }
 };
 Object.assign(PJP.JsPlumb.prototype, {
-    /**
-     * 生成单个流程图数据,用在新建流程图框时使用
-     * @param id 参数ID表示被push进栈的ID
-     * @returns {string}
-     */
-    getSingleChartJson: function (id) {
-
-        var connects = [];
-
-        for (var i in this.list) {
-            for (var j in list[i]) {
-                connects.push({
-                    ConnectionId: list[i][j]['id'],
-                    PageSourceId: list[i][j]['sourceId'],
-                    PageTargetId: list[i][j]['targetId'],
-                    Connectiontext: list[i][j].getLabel(),
-                });
-            }
-        }
-        var blocks = []; // 保存方框的样式
-        var elem = $("#" + id);
-        var rareHTML = elem.html();
-        var resultHTML = rareHTML;
-
-        // 去掉在进行复制操作时误复制的img部件
-        if (rareHTML.indexOf('<img src=\"img/delete.png\"') != -1) {
-            rareHTML = rareHTML.split('<img src=\"img/delete.png\"');
-            resultHTML = rareHTML[0];
-        }
-        if (resultHTML.indexOf('<div style="z-index: 90;" ') != -1) {
-            resultHTML = resultHTML.split('<div style="z-index: 90;" ')[0];
-        }
-        /**********************字体**********************/
-            //字体
-        var Bfont = elem.css("font");
-        //字体颜色
-        var fontSize = elem.css('font-size');
-        //字体对齐方式
-        var fontAlign = elem.css('text-align');
-        //字体颜色
-        var fontColor = elem.css('color');
-
-        (Bfont == '') ? Bfont = "微软雅黑" : Bfont;
-        (fontSize == '') ? fontSize = '12' : fontSize;
-        (fontAlign == '') ? fontAlign = 'center' : fontAlign;
-        (fontColor == '') ? fontColor = 'rgb(0,0,0)' : fontColor;
-
-        /**********************物件**********************/
-            //圆角
-        var borderRadius = elem.css('borderRadius');
-        var elemType = id.split('-')[0];
-        (borderRadius == '') ? borderRadius = '0' : borderRadius;
-        //如果当前部件是圆角矩形,且borderRadius为空或者为0就把默认borderradius设置为4,下同
-        (elemType == 'roundedRect' && (borderRadius == '' || borderRadius == '0')) ? borderRadius = '4' : borderRadius;
-        (elemType == 'circle' && (borderRadius == '' || borderRadius == '0')) ? borderRadius = '15' : borderRadius;
-        //填充
-        var fillColor = elem.css('backgroundColor');
-        (fillColor == '') ? fillColor = 'rgb(255,255,255)' : fillColor;
-        //渐近度
-        var fillBlurRange = elem.css('boxShadow');//rgb(0, 0, 0) 10px 10px 17px 20px inset
-        var fillBlurSplit = fillBlurRange.split(' ');
-        (fillBlurRange == '') ? fillBlurRange = '0' : fillBlurRange = fillBlurSplit[5];
-        //渐近色
-        var fillBlurColor = fillBlurSplit[0] + fillBlurSplit[1] + fillBlurSplit[2];
-        //线框样式
-        var borderStyle = elem.css('border-left-style');
-        (borderStyle == '') ? borderStyle = 'solid' : borderStyle;
-        //线框宽度
-        var borderWidth = elem.css('border-left-width');
-        (borderWidth == '') ? borderWidth = '2' : borderWidth.split('px')[0];
-        //线框颜色
-        var borderColor = elem.css('border-left-color');
-        (borderColor == '') ? borderColor = 'rgb(136,242,75)' : borderColor;
-
-        //阴影数据
-        var shadow = elem.css('box-shadow');
-
-        //字体样式数据
-        var fontStyle = elem.css('fontStyle');
-        var fontWeight = elem.css('fontWeight');
-        var fontUnderline = elem.css('textDecoration');
-
-        //文字高度
-        var lineHeight = elem.css('line-height');
-
-        blocks.push({
-            BlockId: elem.attr('id'),
-            BlockContent: resultHTML,
-            BlockX: parseInt(elem.css("left"), 10),
-            BlockY: parseInt(elem.css("top"), 10),
-            BlockWidth: parseInt(elem.css("width"), 10),
-            BlockHeight: parseInt(elem.css("height"), 10),
-            BlockFont: Bfont,
-            BlockFontSize: fontSize,
-            BlockFontAlign: fontAlign,
-            BlockFontColor: fontColor,
-            BlockBorderRadius: borderRadius,
-            BlockBackground: fillColor,
-            BlockFillBlurRange: fillBlurRange,
-            BlockFillBlurColor: fillBlurColor,
-            BlockBorderStyle: borderStyle,
-            BlockBorderWidth: borderWidth,
-            BlockborderColor: borderColor,
-            BlockShadow: shadow,
-            BlockFontStyle: fontStyle,
-            BlockFontWeight: fontWeight,
-            BlockFontUnderline: fontUnderline,
-            BlockLineHeight: lineHeight
-        });
-
-        var serliza = "{" + '"connects":' + JSON.stringify(connects) + ',"block":' + JSON.stringify(blocks) + "}";
-        // console.log(serliza);
-        return serliza;
-    },
 
     /**
      * 创建流程图节点
      * @param data
      */
     createChart: function (data) {
+        var i, j;
+
         var trueId = data.BlockId;
+        // 如果已经存在节点实例，直接返回
+        if (document.getElementById(trueId) !== null) {
+            return;
+        }
+
         /**
          * <div class="group" style="top:150px;left:500px">
          *     <h4>vector</h4>
@@ -287,7 +175,7 @@ Object.assign(PJP.JsPlumb.prototype, {
         $div.append($ul);
 
         jsPlumb.setContainer('chart-container');
-        for (var i = 0; i < data.BlockItems.length; i++) {
+        for (i = 0; i < data.BlockItems.length; i++) {
             var id = trueId + "_" + data.BlockItems[i].id;
             var $li1 = $("<li class=\"item\" id=\"" + id + "\">" + data.BlockItems[i].name + "</li>");
             $ul.append($li1);
@@ -297,8 +185,76 @@ Object.assign(PJP.JsPlumb.prototype, {
             jsPlumb.addEndpoint(id, {anchor: 'Left'}, this.hollowCircle);
         }
 
+        // 查找并连线
+        for (i = 0; i < data.BlockItems.length; i++) {
+            var pageSource = data.BlockItems[i].PageSource;
+            var pageTarget = data.BlockItems[i].PageTarget;
+            if (pageSource) {
+                for (j = 0; j < pageSource.length; j++) {
+                    if (this.currentBlock.indexOf(pageSource[j].BlockId) > -1) {
+                        this._createLine({
+                            firstPoint: pageSource[j].Firstpoint,
+                            secondPoint: pageSource[j].Secondpoint,
+                            source: pageSource[j].BlockId + "_" + pageSource[j].AttributeID,
+                            target: trueId + "_" + data.BlockItems[i].id
+                        });
+                    }
+                }
+            }
+            if (pageTarget) {
+                for (j = 0; j < pageTarget.length; j++) {
+                    if (this.currentBlock.indexOf(pageTarget[j].BlockId) > -1) {
+                        this._createLine({
+                            firstPoint: pageTarget[j].Firstpoint,
+                            secondPoint: pageTarget[j].Secondpoint,
+                            source: trueId + "_" + data.BlockItems[i].id,
+                            target: pageTarget[j].BlockId + "_" + pageTarget[j].AttributeID
+                        });
+                    }
+                }
+            }
+        }
+
         jsPlumb.draggable(trueId + "");
         $("#" + trueId).draggable({containment: "parent"}); //保证拖动不跨界
+
+        // 保存当前创建的节点
+        this.currentBlock.push(data.BlockId);
+    },
+
+    /**
+     * 创建连线
+     * @param options
+     *  firstPoint
+     *  secondPoint
+     *  source
+     *  target
+     * @private
+     */
+    _createLine: function (options) {
+        var LineCommon = {
+            anchors: [options.firstPoint, options.secondPoint],
+            endpoints: ["Blank", "Blank"],
+            paintStyle: {
+                lineWidth: 2,
+                strokeStyle: "#002050",
+            },
+            connector: ['Flowchart', {cornerRadius: 10}]
+        };
+
+        jsPlumb.connect({
+            source: options.source,
+            target: options.target,
+            overlays: [["Diamond", {
+                location: 0.5,
+                width: 12,
+                height: 12
+            }], [["Arrow"], {
+                location: 1,
+                width: 6,
+                height: 6
+            }]]
+        }, LineCommon);
     },
 
     //********************************* 流程图数据操作区域 *********************************
@@ -411,6 +367,9 @@ Object.assign(PJP.JsPlumb.prototype, {
                 jsPlumb.addEndpoint(BlockItems[j].id, {anchor: 'Right'}, this.hollowCircle);
                 jsPlumb.addEndpoint(BlockItems[j].id, {anchor: 'Left'}, this.hollowCircle);
             }
+
+            // 保存当前创建的节点
+            this.currentBlock.push(BlockId);
         }
 
         // 显示连接
@@ -422,7 +381,7 @@ Object.assign(PJP.JsPlumb.prototype, {
             var Firstpoint = unpack['connects'][i]['Firstpoint'];
             var Secondpoint = unpack['connects'][i]['Secondpoint'];
 
-            //用jsPlumb添加锚点
+            // 用jsPlumb添加锚点
 
             jsPlumb.draggable($("#" + PageSourceId).parent().parent().attr("id"));
             jsPlumb.draggable($("#" + PageTargetId).parent().parent().attr("id"));
@@ -430,33 +389,24 @@ Object.assign(PJP.JsPlumb.prototype, {
             $("#" + PageSourceId).parent().parent().draggable({containment: "parent"}); //保证拖动不跨界
             $("#" + PageTargetId).parent().parent().draggable({containment: "parent"}); //保证拖动不跨界
 
-            var common = {
-                anchors: [Firstpoint, Secondpoint],
-                endpoints: ["Blank", "Blank"],
-                label: unpack['connects'][i]['Connectiontext'],
-                paintStyle: {
-                    lineWidth: 2,
-                    strokeStyle: "#002050",
-                },
-                connector: ['Flowchart', {cornerRadius: 10}]
-            };
-
-            jsPlumb.connect({
+            // 设置连线
+            this._createLine({
+                firstPoint: Firstpoint,
+                secondPoint: Secondpoint,
                 source: PageSourceId,
-                target: PageTargetId,
-                overlays: [["Diamond", {
-                    location: 0.5,
-                    width: 12,
-                    height: 12
-                }], [["Arrow"], {
-                    location: 1,
-                    width: 6,
-                    height: 6
-                }]]
-            }, common);
+                target: PageTargetId
+            });
         }
 
         return true;
     },
-});
 
+    /********************************** 事件 ************************************************/
+    /**
+     * 创建连接后触发函数
+     * @param data
+     */
+    connection: function (data) {
+        console.log(data);
+    }
+});

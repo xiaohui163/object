@@ -1,5 +1,7 @@
 .right-content {
-
+    --tools:0;
+    background: url('../img/bg.png') center no-repeat;
+    background-size: cover;
 }
 
 .right-content .content-tools {
@@ -29,7 +31,7 @@
 }
 
 .collapse-content {
-    width: calc(100% - 276px);
+    width: calc(100% - var(--tools) * 1px - 10px);
     height: calc(100% - 80px);
     padding-bottom: 80px;
     float: left;
@@ -148,3 +150,4 @@
     padding: 10px 0px 6px 12px;
     background: url("../img/pop_bg01.png") center top no-repeat;
 }
+

@@ -2,7 +2,9 @@
 $(function(){
 
     var jsplumb = new PJP.JsPlumb();
-
+    jsplumb.connectionDblclick = function(info){
+        console.log(info)
+    };
     let asyncSetting = {
         async: {
             key:{
@@ -119,6 +121,7 @@ $(function(){
             return false
         }
     }
+
     function zTreeOnDrop(event, treeId, treeNodes, targetNode, moveType){
         if($(event.target).is($('#chart-container'))){
 

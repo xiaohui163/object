@@ -1,0 +1,25 @@
+{
+  "status": true,
+  "data": {
+    "BlockId": "BlockId2",
+    "BlockTitle": "流程图表题三",
+    "BlockItems": [
+      {
+        "id": 1,
+        "name": "属性一",
+        "PageSource": [
+          {
+            "BlockId": "BlockId0",
+            "AttributeID": "2",
+            "Firstpoint": "Right",
+            "Secondpoint": "Left"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "属性二"
+      }
+    ]
+  }
+}
