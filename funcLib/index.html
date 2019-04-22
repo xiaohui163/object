@@ -107,12 +107,15 @@
     <div class="func-describe">
         <div class="describe-left">
             <p><span style="display: inline-block;width: 14px;height: 14px;background-image: url('../img/3yuan.png');vertical-align: middle;margin-right: 0.5vw"></span>
-                <span style="display: inline-block;vertical-align: middle">函数描述</span></p>
+                <span style="display: inline-block;vertical-align: middle">函数描述</span>
+                <span class="editText" style="float: right;cursor: pointer"><img src="../img/btn_bj.png" alt=""></span></p>
             <div class="imgs">MAX</div>
             <div class="derline">
                 <span class="ening">描述：</span><span style="color: #aeaeae;">计算所选参数数值的和</span></div>
             <div><span class="ening">规则：</span><span style="color: #aeaeae;">Number1：1-255个带求和的数值。参很多客户看。逻辑值和文本有效。</span></div>
             <div><span class="ening">示例：</span><span style="color: #aeaeae;">Number1：1-255个带求和的数值。和点卡很多客户看。逻辑值和文本有效。</span></div>
+            <div class="edit"><span onclick="a()">取消</span>
+                <span style="color: #ffffff;background: linear-gradient(to right,#40a2fc,#7de2e9);">保存</span></div>
         </div>
         <div class="describe-right">
             <div class="title">
@@ -124,6 +127,12 @@
                     <li>SUM</li>
                     <li>IF</li>
                     <li>s</li>
+                    <li>SUM</li>
+                    <li>IF</li>
+                    <li>s</li>
+                    <li>SUM</li>
+                    <li>IF</li>
+
                 </ul>
             </div>
         </div>
@@ -152,12 +161,15 @@
         <div>
             <p>
                 <span style="display: inline-block;width: 14px;height: 14px;background-image: url('../img/3yuan.png');vertical-align: middle;margin-right: 0.5vw"></span>
-                <span style="display: inline-block;vertical-align: middle">函数描述</span></p>
+                <span style="display: inline-block;vertical-align: middle">函数描述</span>
+                <span style="float: right"><img src="../img/btn_bj.png" alt=""></span></p>
             <div class="imgs">MAX</div>
             <div class="derline">
                 <span class="ening">描述：</span><span style="color: #aeaeae;">{{ item.id }}</span></div>
             <div><span class="ening">规则：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
             <div><span class="ening">示例：</span><span style="color: #aeaeae;">{{ item.name }}</span></div>
+            <div class="edit"><span>取消</span>
+                <span style="color: #ffffff;background: linear-gradient(to right,#40a2fc,#7de2e9);">保存</span></div>
         </div>
     {{# }) }}
 </script>
@@ -167,11 +179,41 @@
 <script id="commonFunction" type="text/html">
     <ul>
         {{# layui.each(d.data,function(idx,item){ }}
-            <li>{{ item.name }}</li>
+            <li id="{{item.id}}">{{ item.name }}</li>
         {{# }) }}
     </ul>
 </script>
 <!--自定义模板-->
+
+<!--<div class="addColModel">-->
+<!--    <form action="" class="layui-form add-col-form">-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">函数描述</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input type="text" name="title" required lay-verify="required" placeholder="请输入函数描述" class="layui-input"-->
+<!--                       autocomplete="off">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">规则</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input type="text" name="item1" lay-verify="" placeholder="请输入规则" class="layui-input"-->
+<!--                       autocomplete="off">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item">-->
+<!--            <label class="layui-form-label">示例</label>-->
+<!--            <div class="layui-input-inline">-->
+<!--                <input type="text" name="item2" lay-verify="" placeholder="请输入示例" class="layui-input"-->
+<!--                       autocomplete="off">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="layui-form-item btns">-->
+<!--            <span class="layui-btn submit-layer" lay-submit lay-filter="submitCol">提交</span>-->
+<!--            <span type="reset" class="layui-btn reset-form cancel-layer">重置</span>-->
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
 <script src="../plugin/jquery-1.11.3.js"></script>
 <script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
 <script src="../plugin/zTree_v3/js/jquery.ztree.all.js"></script>

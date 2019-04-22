@@ -39,7 +39,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
 
                 let data = {
                     data:[treeNode]
-                }
+                };
                 if(treeNode.lev !== 1){
                     var getTpl = $('#describeContent').html();
                     $tpl(getTpl).render(data, function(html){
@@ -135,4 +135,75 @@ layui.use(['element','form','table','laytpl','layer'], function () {
         })
     }
 
+    $('.describe-left .editText').on('click',function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+            $layer.open({
+                type:1,
+                content: $('.addColModel'),
+                title:'编辑函数',
+                area:["360px",'auto'],
+                shadeClose:false,
+                resize:false,
+                move:false,
+                tipsMore:true,
+                offset: '200px',
+                cancel:function(index, layero){
+                    $('.addColModel form')[0].reset()
+                }
+            })
+    });
+
+    //添加自定义列提交
+    $form.on('submit(submitCol)',function(data){
+        $layer.load();
+        var data = {...data.field};
+        data['id'] = $('.colla-item.active').attr('data-id')
+        data['PId'] = $('.colla-item.active').attr('data-PId')
+        let url = "#";
+        colSubmit(url,data)
+        return false;
+    });
+
+    function colSubmit(url,data){
+        $.ajax({
+            url: url,
+            type:'post',
+            data:data,
+            dataType:'json',
+            success:function(res){
+                $layer.closeAll('loading')
+                if(res.status){
+                    $layer.closeAll('page')
+                    $layer.msg('保存成功！')
+                }
+            },
+            error:function(err){
+                console.log(err)
+                $layer.closeAll('loading');
+                $layer.msg('服务器错误！')
+            }
+        })
+    }
+
+
+    let liUrl = '';
+    $(".common-func").on('click', 'li', function () {
+        var id = $(this).attr("id");
+        $.ajax({
+            url:liUrl,
+            data:{"id":id},
+            type:'post',
+            dataType:'json',
+            success:function(result){
+                var getTpl = $('#describeContent').html();
+                $tpl(getTpl).render(result, function(html){
+                    $('.describe-left').html(html)
+                })
+            },error:function(err){
+                console.log(err)
+            }
+        })
+    })
 });
+

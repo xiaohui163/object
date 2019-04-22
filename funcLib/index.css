@@ -9,15 +9,21 @@
     width: calc(100% - 2vw);
     height: calc(100% - 20vh);
     display: flex;
-    background: white;
-    border-radius: 10px;
     margin-top: 4vh;
+    border-radius: 10px;
+    box-shadow: 1px 11px 13px rgba(255,255,255,0.4);
 }
 .describe-left{
+    z-index: 2;
+    position: relative;
     width: 56vw;
-    padding: 2vh 1vw;
+    padding: 2vh 2vw;
+    box-shadow: 4px 0 8px #88888847;
+    border-radius: 10px;
+    background: white;
     font-size: 0.8vw;
     line-height: 3vh;
+    overflow-y: auto;
 }
 .describe-left p{
     font-size: 1vw;
@@ -25,7 +31,7 @@
     font-weight: bold;
 }
 .describe-left .imgs{
-    width: 5vw;
+    width: 15vw;
     margin: 2vh 0;
     font-size: 1.2vw;
     font-weight: bold;
@@ -41,6 +47,27 @@
 .describe-left div{
     margin-bottom: 2vh;
 }
+.describe-left .edit{
+    font-size: 16px;
+    font-weight: bold;
+    color: #c0c0c0;
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    right:26px;
+    bottom: 21px;
+    width: 160px;
+    height: 35px;
+}
+.describe-left .edit span{
+    display: block;
+    cursor: pointer;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 5px;
+}
 .ening{
     color: #66717d;
     font-size: 0.9vw;
@@ -50,6 +77,8 @@
     width: 44vw;
     padding: 2vh 1.5vw;
     border-radius: 10px;
+    margin-left: -9px;
+    z-index: 1;
     background: #f3f9f9;
 }
 
@@ -72,11 +101,12 @@
     margin-top: 7px;
 }
 .describe-right .common-func{
-    padding: 2vh 1.5vw 2vh 0;
+    padding: 2vh 1.5vw 2vh 1vw;
+    height: calc(100% - 8vh);
 }
 .describe-right .common-func ul{
     width: 22vw;
-    height: 66vh;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
 }
