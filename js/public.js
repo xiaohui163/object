@@ -186,7 +186,6 @@ function zTreeOnNodeCreated(event, treeId, treeNode) {
 function zTreeOnRemove(event, treeId, treeNode) {
     event.stopPropagation();
     alert(treeNode.tId + ", " + treeNode.name);
-    changeTreeNode(treeNode.id,treeNode.pId,treeNode.name,2)
 }
 function zTreeOnRename(event, treeId, treeNode, isCancel) {
     event.stopPropagation();
@@ -231,6 +230,7 @@ function changeTreeNode(id,parentTId,name,type,it) {
             }
         }
     })
+
 }
 
 //规则库右侧三角

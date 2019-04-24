@@ -227,6 +227,20 @@ html, body {
     padding: 0 7px;
 }
 
+.treenav{
+    padding: 24px 0 15px 8px;
+    font: 700 22px SourceHanSansCN-Blod;
+    color: #545456;
+    border-bottom: 1px solid #e2e2e2;
+    display: flex;
+}
+.treenav .itembox{
+    font-size: 12px;
+    text-align: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .tree-title {
     padding: 24px 0 15px 8px;
     font: 700 22px SourceHanSansCN-Blod;
