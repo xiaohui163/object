@@ -118,56 +118,6 @@
         </div>
     </div>
 
-
-
-
-    <div class="top-tips">
-        <form action="" class="layui-form">
-            <div class="layui-form-item">
-                <input type="radio" class="choosing" name="choosing" value="colm" title="自定义">
-                <input type="radio" class="choosing" name="choosing" value="colm" title="条件选择">
-            </div>
-            <div class="layui-form-item">
-                <button class="layui-btn submit-layer">确定</button>
-                <button class="layui-btn cancel-layer">取消</button>
-            </div>
-        </form>
-    </div>
-    <!--自定义内容-e-->
-
-    <!--自定义模板-s-->
-    <script id="collaItems" type="text/html">
-        {{# layui.each(d.data,function(idx,item){ }}
-        <div class="colla-item {{ item.isNewCreated ? 'editable' : '' }}" data-id={{item.id}} data-pid="{{item.pId}}"
-             data-lev="{{item.lev}}">
-            <div class="item-top">
-                <h3 class="colla-title">
-                    <i class="colla-icon arrow-right"></i>
-                    <span class="title-text">{{ item.name }}</span>
-                    <input type="text" class="input-name" value="{{item.name}}">
-                </h3>
-                <span class="layui-btn colla-del" title="删除当前项"></span>
-                <span class="layui-btn clloa-add-col" title="添加列"></span>
-                <span class="layui-btn colla-edit {{ item.isNewCreated ? 'new-created' : '' }}" title="编辑当前列"></span>
-            </div>
-            <div class="colla-content" data-id="{{ item.id }}"></div>
-        </div>
-        {{# }) }}
-    </script>
-    <script id="calssTpl" type="text/html">
-        <option value="">指标分类</option>
-        {{# layui.each(d.data,function(index,ele){ }}
-        {{# if(ele.isParent){ }}
-        <optgroup label="{{ ele.name }}">
-            {{# layui.each(ele.children,function(i,e){ }}
-            <option value="{{ e.id }}">{{ e.name }}</option>
-            {{# }) }}
-        </optgroup>
-        {{# }else{ }}
-        <option value="{{ ele.id }}">{{ ele.name }}</option>
-        {{# } }}
-        {{# }) }}
-    </script>
     <!--自定义模板-e-->
     <script src="../plugin/jquery-1.11.3.js"></script>
     <script src="../plugin/layui-v2.4.5/layui/layui.js"></script>
@@ -176,40 +126,17 @@
     <script src="../js/public.js"></script>
     <script src="../js/distion.js"></script>
     </body>
-    <!--自定义弹框-s-->
-    <div class="add-select" style="display: none">
-        <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <select name="ele" class="class-select" lay-filter="calssIndicators">
 
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="selected-render-box"></div>
-            </div>
-        </form>
-    </div>
-
-    <div class="addColModel">
+    <div class="copyContent">
         <form action="" class="layui-form add-col-form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">表头名称</label>
+            <div class="layui-form-item" style="margin-top: 10px">
+                <label class="layui-form-label">名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="title" required lay-verify="required" placeholder="请输入表头名称" class="layui-input"
+                    <input type="text" name="item1" lay-verify="required|twoWord" placeholder="请输入名称" class="layui-input"
                            autocomplete="off">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">内容</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="item1" lay-verify="" placeholder="请输入内容" class="layui-input"
-                           autocomplete="off">
-                </div>
-                <span class="layui-icon more-content"></span>
-            </div>
-            <div class="layui-form-item btns">
+            <div class="layui-form-item btns" style="text-align: center">
                 <span class="layui-btn submit-layer" lay-submit lay-filter="submitCol">提交</span>
                 <span type="reset" class="layui-btn reset-form cancel-layer">重置</span>
             </div>

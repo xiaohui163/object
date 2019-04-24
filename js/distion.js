@@ -52,7 +52,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
         zTreeObj.selectNode(treeNode,false);
         $('.collapse-content .colla-item').removeClass('active');
         var zTree = $.fn.zTree.getZTreeObj(treeId);
-        textNav = treeNode.name;
+        textNav = treeNode;
         if(zTree.getSelectedNodes().length > 0){
             let node = zTree.getSelectedNodes()[0];
             node['selectedFlag'] = false;
@@ -65,7 +65,7 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     $(".itembox").click(function () {
         if($(this).hasClass('application')){
             if(textNav){
-                $(".distionary .title").text(textNav);
+                $(".distionary .title").text(textNav.name);
                 $(".distionary .distionary-left").click(function () {
                     window.location.href = '#'
                 })
@@ -80,6 +80,27 @@ layui.use(['element','form','table','laytpl','layer'], function () {
             }
 
         }else if($(this).hasClass('copy')){
+            if(textNav){
+                $layer.open({
+                    type:1,
+                    content: $('.copyContent'),
+                    title:'复制',
+                    area:["360px",'auto'],
+                    shadeClose:false,
+                    resize:false,
+                    move:false,
+                    tipsMore:true,
+                    offset: '300px',
+                })
+            }else{
+                $layer.open({
+                    title:'提示',
+                    content:'未选中节点',
+                    closeBtn:false,
+                    skin:'del-confirm',
+                    btnAlign:'c'
+                })
+            }
 
         }else{
 
@@ -90,8 +111,9 @@ layui.use(['element','form','table','laytpl','layer'], function () {
     $form.on('submit(submitCol)',function(data){
         $layer.load();
         var data = {...data.field};
-        data['id'] = $('.colla-item.active').attr('data-id')
-        data['PId'] = $('.colla-item.active').attr('data-PId')
+        data['id'] = textNav.id;
+        data['PId'] = textNav.pid;
+
         let url = "#";
         colSubmit(url,data,"wholeCol");
         return false;
